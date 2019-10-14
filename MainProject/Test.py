@@ -1,8 +1,15 @@
 import Client
 import cv2
 
-TestClient = Client.Client()
+cam = cv2.VideoCapture(0)
 
 while True:
+    ret, frame = cam.read()
+    cv2.imshow("h", frame)
+    if cv2.waitKey(1) & 0xFF == ord("c"):
+        break
     if cv2.waitKey(1) & 0xFF == ord("q"):
-        TestClient.SendInfo(10, 10.10)
+        Client.SockConnect()
+
+cam.release()
+cv2.destroyAllWindows()
