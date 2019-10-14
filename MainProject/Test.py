@@ -1,8 +1,8 @@
 import Client
 import cv2
 
-TestClient = Client.qClient()
+TestClient = Client.Client()
 
 while True:
     if cv2.waitKey(1) & 0xFF == ord("q"):
-        TestClient.Send(10, 10.10)
+        TestClient.SendInfo(10, 10.10)
