@@ -10,6 +10,8 @@ while True:
         break
     if cv2.waitKey(1) & 0xFF == ord("q"):
         Client.SockConnect()
+    if cv2.waitKey(1) & 0xFF == ord("r"):
+        Client.SendInfo(5, 5, 5)
 
 cam.release()
 cv2.destroyAllWindows()
