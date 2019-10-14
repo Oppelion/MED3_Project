@@ -1,4 +1,5 @@
 import socket
+import cv2
 
 # Two variables for passing through the client
 test1 = 0
@@ -26,3 +27,7 @@ def Send(x, y):
 # Closes the socket so that it is unused
 def Close():
     sock.close()
+
+
+if cv2.waitKey(1) & 0xFF == ord("q"):
+    Send(test1, test2)
