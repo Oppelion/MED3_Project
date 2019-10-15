@@ -22,7 +22,7 @@ def SendInfo(x, y, z):
     # function call for sending to the defined IP and Port
     sock.sendall(data_string)
     print("halløjsa")
-    print(str(data))
+    print(str(data_string))
     # Can receive up to 4096 bytes from a peer
 
 # Closes the socket so that it is unused
