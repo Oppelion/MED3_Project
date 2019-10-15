@@ -17,12 +17,12 @@ def SockConnect():
 def SendInfo(x, y, z):
 
     data = [x, y, z]
-
+    data2 = bytearray(data)
     data_string = pickle.dumps(data)
     # function call for sending to the defined IP and Port
-    sock.sendall(data_string)
+    sock.sendall(data2)
     print("halløjsa")
-    print(str(data))
+    print(data2)
     # Can receive up to 4096 bytes from a peer
 
 # Closes the socket so that it is unused
