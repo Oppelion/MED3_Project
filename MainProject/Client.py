@@ -23,6 +23,7 @@ def SendInfo(x, y, z):
     sock.sendall(data2)
     print("halløjsa")
     print(data2)
+    print(str(data_string))
     # Can receive up to 4096 bytes from a peer
 
 # Closes the socket so that it is unused
