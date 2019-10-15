@@ -75,9 +75,6 @@ int main()
 
 	cout << "Listening for incoming connections..." << endl;
 
-	int x = 1;
-	double y = 1.0;
-
 	int clientAddrSize = sizeof(clientAddr);
 	while (true)
 	{
