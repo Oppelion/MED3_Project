@@ -6,27 +6,30 @@
 #pragma comment(lib, "Ws2_32.lib")
 using namespace std;
 
-int recvArray[3];
+void passData(char* indexZero)
+{/*MUST HAVE 3 INDEXES*/
+	int recvArray[3];
+	for (int i = 0; i < 3; i++)
+	{
+		recvArray[i] = *(indexZero + i); //Assigning recvArray to the dereferenced pointer position of the recieved data
+		//indexZero is the pointer recieved, thats points to the memory position of index 0 of the array send from python
+		//indexZero + 1 is the next memory position, and since the recieved data is an array, then every index of that array is ordered in memory
+	}
 
-void recieveData(SOCKET s, char* buffer, int bufflen) {
-	int iResult = 10;
+	/*Implement function call that sends data and starts the MIDI player here*/
+	/*StartMIDI(recvArray[]);*/
+}
+
+void recieveData(SOCKET s, char* _memPosIndexZero, int ignoreMe) {
+	int iResult = 1;
 	do {
-		iResult = recv(s, buffer, bufflen, 0);
+		iResult = recv(s, _memPosIndexZero, bufflen, 0);
 		if (iResult > 0)
 		{
-
-			/*!!OBS!! IMPORTANT Array only has 3 indexes*/
-
-			for (int i = 0; i < 3; i++)
-			{
-				recvArray[i] = *(buffer + i);
-			}
-			/*First index in sended array*/		printf("Bytes received: %d\n", *buffer);
-			/*Second index in sended array*/	printf("Second point: %d\n", *(buffer + 1));
-			/*Third index in sended array*/		printf("Third point: %d\n", *(buffer + 2));
-
-			/*!!OBS!! IMPORTANT Array only has 3 indexes*/
-
+			passData(_memPosIndexZero);
+			printf("Bytes received: %d\n", *_memPosIndexZero);		//Print dereferenced value of the memory position of recieved array[0]
+			printf("Second point: %d\n", *(_memPosIndexZero + 1));	//Print dereferenced value of the memory position + 1(next memory location) of recieved array[0]
+			printf("Third point: %d\n", *(_memPosIndexZero + 2));	//Print dereferenced value of the memory position + 2(next next memory location) of recieved array[0]
 		}
 		else if (iResult == 0)
 			printf("Connection closed\n");
@@ -83,8 +86,8 @@ int main()
 			cout << "Client connected!" << endl;
 			cout << x << " " << y << endl;
 
-			char* buffer = new char[256];
-			recieveData(client, buffer, 256);
+			char* _memPosIndexZero = new char[256];
+			recieveData(client, _memPosIndexZero, 256);
 
 			//closesocket(client);
 		}
