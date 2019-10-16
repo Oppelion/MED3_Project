@@ -1,9 +1,9 @@
-#include <iostream>
-#include <WinSock2.h>
-#include <ws2tcpip.h>
-#include <stdio.h>
+#include <iostream>		//Standard
+#include <WinSock2.h>	//Network library
+#include <ws2tcpip.h>	//Library used by WinSock2
+//#include <stdio.h>	//Unused
 
-#pragma comment(lib, "Ws2_32.lib")
+#pragma comment(lib, "Ws2_32.lib") //Compiler directive which leaves a comment in generated object file
 using namespace std;
 
 void passData(char* indexZero)
@@ -20,7 +20,9 @@ void passData(char* indexZero)
 	/*StartMIDI(recvArray[]);*/
 }
 
-void recieveData(SOCKET s, char* _memPosIndexZero, int len) {
+
+
+void recieveData(SOCKET s, char* _memPosIndexZero, int len) {		// Function called recieveData, takes the socket that recieves the data, a pointer array which points to index zero in the recieved data
 	int iResult;
 	do {
 		iResult = recv(s, _memPosIndexZero, len, 0);				//iResult is the amount of bytes recieved
@@ -45,13 +47,13 @@ int main()
 
 	// The socket
 	SOCKET server, client;
-
+	
 	// An object which contains information about the socket
 	SOCKADDR_IN serverAddr, clientAddr;
 
 	// First parameter: MAKEWORD, specifies the type of winsock being used
 	// Second parameter: Adress for the WSAData object we created
-	WSAStartup(MAKEWORD(2, 0), &WSAData);
+	WSAStartup(MAKEWORD(2, 0), &WSAData); //Without this line, client will be denied access
 
 	// Initializes the socket, AF_INET defines the format for the adress as IPv4
 	// SOCK_STREAM specifies the type of connection as TCP
@@ -74,20 +76,18 @@ int main()
 	*/
 	listen(server, SOMAXCONN);
 
-	/* UNKNOWN CODE :=) */
-
-	cout << "Listening for incoming connections..." << endl;
+	cout << "Listening for incoming connections..." << endl; //Initial message when starting the server
 
 	int clientAddrSize = sizeof(clientAddr);
 	while (true)
 	{
+		//This runs when a client has succesfully connected to the server
 		if ((client = accept(server, (SOCKADDR*)&clientAddr, &clientAddrSize)) != INVALID_SOCKET)
 		{
 			cout << "Client connected!" << endl;
-			cout << x << " " << y << endl;
 
-			char* _memPosIndexZero = new char[256];
-			recieveData(client, _memPosIndexZero, 256);
+			char* _memPosIndexZero = new char[3];	//Wat dis du?
+			recieveData(client, _memPosIndexZero, 3); //Function call that takes the socket which is to be watched, array for storaging and the length of the pointer array
 
 			//closesocket(client);
 		}
