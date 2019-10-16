@@ -20,10 +20,10 @@ void passData(char* indexZero)
 	/*StartMIDI(recvArray[]);*/
 }
 
-void recieveData(SOCKET s, char* _memPosIndexZero, int ignoreMe) {
-	int iResult = 1;
+void recieveData(SOCKET s, char* _memPosIndexZero, int len) {
+	int iResult;
 	do {
-		iResult = recv(s, _memPosIndexZero, bufflen, 0);
+		iResult = recv(s, _memPosIndexZero, len, 0);				//iResult is the amount of bytes recieved
 		if (iResult > 0)
 		{
 			passData(_memPosIndexZero);
@@ -31,18 +31,18 @@ void recieveData(SOCKET s, char* _memPosIndexZero, int ignoreMe) {
 			printf("Second point: %d\n", *(_memPosIndexZero + 1));	//Print dereferenced value of the memory position + 1(next memory location) of recieved array[0]
 			printf("Third point: %d\n", *(_memPosIndexZero + 2));	//Print dereferenced value of the memory position + 2(next next memory location) of recieved array[0]
 		}
-		else if (iResult == 0)
+		else if (iResult == 0)										//Checks if the data recieved doesn't contain anything
 			printf("Connection closed\n");
 		else
-			printf("recv failed: %d\n", WSAGetLastError());
-	} while (iResult > 0);
+			printf("recv failed: %d\n", WSAGetLastError());			//Prints the error status for the last Windows Sockets operation that failed.
+	} while (iResult > 0);											//Runs the code above while iResult contains information
 }
 
 int main()
 {
 	// Declare WSADATA object, only used once during WSAStartup, tells the program we will be using sockets
 	WSADATA WSAData;
-
+	
 	// The socket
 	SOCKET server, client;
 
