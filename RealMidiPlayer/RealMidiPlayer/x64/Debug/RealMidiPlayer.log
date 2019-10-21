@@ -1,3 +1,2 @@
-﻿  RealMidiPlayer.cpp
-C:\Users\TMIA Data Central\source\repos\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(18,29): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  RealMidiPlayer.vcxproj -> C:\Users\TMIA Data Central\source\repos\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe
+﻿  Sound.cpp
+  RealMidiPlayer.vcxproj -> C:\Users\bruger\Documents\GitHub\MED3_Project\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe

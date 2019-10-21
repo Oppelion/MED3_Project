@@ -12,13 +12,18 @@ void passData(char* indexZero)
 	
 	for (int i = 0; i < 3; i++)
 	{
+		/*if (*(indexZero + i < 0)) 
+		{
+
+		}*/
 		recvArray[i] = *(indexZero + i); //Assigning recvArray to the dereferenced pointer position of the recieved data
 		//indexZero is the pointer recieved, thats points to the memory position of index 0 of the array send from python
 		//indexZero + 1 is the next memory position, and since the recieved data is an array, then every index of that array is ordered in memory
 	}
 
 	/*Implement function call that sends data and starts the MIDI player here*/
-	/*StartMIDI(recvArray[]);*/
+	//playSound(recvArray[0], recvArray[1], recvArray[2]);
+	getData = true;
 }
 
 
@@ -30,7 +35,7 @@ void recieveData(SOCKET s, char* _memPosIndexZero, int len) {		// Function calle
 		if (iResult > 0)
 		{
 			passData(_memPosIndexZero);
-			printf("Bytes received: %d\n", *_memPosIndexZero);		//Print dereferenced value of the memory position of recieved array[0]
+			printf("First point: %d\n", *_memPosIndexZero);		//Print dereferenced value of the memory position of recieved array[0]
 			printf("Second point: %d\n", *(_memPosIndexZero + 1));	//Print dereferenced value of the memory position + 1(next memory location) of recieved array[0]
 			printf("Third point: %d\n", *(_memPosIndexZero + 2));	//Print dereferenced value of the memory position + 2(next next memory location) of recieved array[0]
 		}
@@ -83,14 +88,18 @@ int server_main()
 	while (true)
 	{
 		//This runs when a client has succesfully connected to the server
-		if ((client = accept(server, (SOCKADDR*)&clientAddr, &clientAddrSize)) != INVALID_SOCKET)
+		if ((client = accept(server, (SOCKADDR*)&clientAddr, &clientAddrSize)) != INVALID_SOCKET )
 		{
 			cout << "Client connected!" << endl;
 
-			char* _memPosIndexZero = new char[3];	//Wat dis du?
-			recieveData(client, _memPosIndexZero, 3); //Function call that takes the socket which is to be watched, array for storaging and the length of the pointer array
+			char* _memPosIndexZero = new char[10];	//Wat dis du?
+			recieveData(client, _memPosIndexZero, 10); //Function call that takes the socket which is to be watched, array for storaging and the length of the pointer array
 
+
+			cout << "End2" << endl;
 			//closesocket(client);
 		}
+		cout << "End" << endl;
+		return 0;
 	}
 }
