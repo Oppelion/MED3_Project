@@ -113,14 +113,4 @@
     <MESSAGE value="Fixed some minor stuff again" />
     <option name="LAST_COMMIT_MESSAGE" value="Fixed some minor stuff again" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/image_Processor.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
 </project>
