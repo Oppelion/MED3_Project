@@ -11,7 +11,9 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord("q"):
         Client.SockConnect()
     if cv2.waitKey(1) & 0xFF == ord("r"):
-        Client.SendInfo(6, 5, 4)
+        Client.SendInfo(127, 60, 100)
+    if cv2.waitKey(1) & 0xFF == ord("t"):
+        Client.SendInfo(127, 90, 100)
 
 cam.release()
 cv2.destroyAllWindows()
