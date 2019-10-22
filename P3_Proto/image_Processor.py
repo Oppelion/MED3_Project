@@ -22,9 +22,9 @@ class imageProcessor:
     def set_frame(self, frame):
         self.frame = frame
 
-    def create_mask(self, image):
+    def create_mask(self, image, lower_limit, upper_limit):
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-        mask = cv2.inRange(hsv, (50, 25, 25), (100, 200, 200))
+        mask = cv2.inRange(hsv, lower_limit, upper_limit)
         return mask
 
     def reduce_noise(self, image):

@@ -8,12 +8,33 @@ distance = 0.0
 distance_init = 0.0
 speed = 0.0
 clientConnected = False
+nonCalibration = True
+
+lower_limit = (100, 150, 150)
+upper_limit = (140, 255, 255)
+
+while nonCalibration == False:
+    ret, frame2 = cap.read()
+    cv2.rectangle(frame2, (328, 238), (332, 242), (150, 150, 150))
+
+    hsv = cv2.cvtColor(frame2, cv2.COLOR_BGR2HSV)
+    cv2.imshow('frame2', hsv)
+    if cv2.waitKey(1) & 0xFF == ord('e'):
+        print(lower_limit)
+        print(upper_limit)
+        pixel = frame2[240][330]
+        lower_limit = np.array((pixel[0] - 15, pixel[1] - 15, pixel[2] - 15), dtype=np.uint8, ndmin=1)
+        upper_limit = np.array((pixel[0] + 15, pixel[1] + 15, pixel[2] + 15), dtype=np.uint8, ndmin=1)
+        print(pixel)
+        print(lower_limit)
+        print(upper_limit)
+        nonCalibration = False
 
 while True:
     ret, frame = cap.read()
 
     IP.set_frame(frame)
-    IP.mask = IP.create_mask(frame)
+    IP.mask = IP.create_mask(IP.frame, lower_limit, upper_limit)
     IP.frame = IP.reduce_noise(IP.mask)
     IP.frame = IP.detect_blobs(IP.frame)
     IP.locate_hands(IP.frame)
@@ -36,9 +57,10 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('w'):
         Client.SockConnect()
         clientConnected = True
-    if clientConnected == True and distance_init != 0.0 and distance != lastDist and speed != lastSpeed:
+    if clientConnected == True and distance_init != 0.0 and distance != lastDist and speed != lastSpeed and IP.pos_right_hand[1] < 100 and IP.pos_right_hand[1] > 200:
         distance_init = distance_init / 100
-        distance = speed / 100
+        distance = distance / 100
+        speed = speed / 100
         Client.SendInfo(int(distance_init), int(distance), int(speed))
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
