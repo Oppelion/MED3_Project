@@ -1,26 +1,22 @@
 import cv2
 import numpy as np
-import math
-import time
 
 
 class imageProcessor:
     power = 0.0
     distance = 0.0
-    distance_init = 0.0
     pts = None
-    pos_right_hand = [0, 0]
-    pos_left_hand = [0, 0]
-    guitar_string_pos = 0
-    movement = False
+    pos_left_hand = 0.0
+    pos_right_hand = 0.0
     frame = None
     mask = None
-    time = 0.0
-    numb_of_frames = 0.0
-    origin_point = 0.0
-    speed_right_hand = 0.0
 
-    def set_frame(self, frame):
+    def __init__(self, frame):
+        self.power = 0.0
+        self.distance = 0.0
+        self.pts = None
+        self.pos_left_hand = 0.0
+        self.pos_right_hand = 0.0
         self.frame = frame
 
     def create_mask(self, image):
@@ -61,51 +57,28 @@ class imageProcessor:
         self.pts = cv2.KeyPoint_convert(image)
         if len(self.pts) == 2:
             if self.pts[0, 0] > self.pts[1, 0]:
-                self.pos_left_hand[0] = self.pts[0, 0]
-                self.pos_left_hand[1] = self.pts[0, 1]
-                self.pos_right_hand[0] = self.pts[1, 0]
-                self.pos_right_hand[1] = self.pts[1, 1]
+                self.pos_left_hand = self.pts[0, 0]
+                self.pos_right_hand = self.pts[1, 0]
             else:
-                self.pos_left_hand[0] = self.pts[1, 0]
-                self.pos_left_hand[1] = self.pts[1, 1]
-                self.pos_right_hand[0] = self.pts[0, 0]
-                self.pos_right_hand[1] = self.pts[0, 1]
-
-    def calibrate(self):
-        self.distance_hands()
-        self.distance_init = self.distance
-        self.guitar_string_pos = self.pos_right_hand[1]
+                self.pos_left_hand = self.pts[1, 0]
+                self.pos_right_hand = self.pts[0, 0]
 
     def distance_hands(self):
-        if self.pos_left_hand[1] > self.pos_right_hand[1]:
-            distance_y = self.pos_left_hand[1] - self.pos_right_hand[1]
-        else:
-            distance_y = self.pos_right_hand[1] - self.pos_left_hand[1]
+        distance = self.pos_left_hand-self.pos_right_hand
+        return distance
 
-        distance_x = self.pos_left_hand[0] - self.pos_right_hand[0]
+    def speed(self):
+        val_y = []
+        for x in range(len(self.pts)):
+            all_val_y = self.pts[x][1]
+            val_y.append(all_val_y)
 
-        self.distance = math.sqrt((distance_x**2) + (distance_y**2))
+        minValY = min(val_y)
+        maxValY = max(val_y)
 
-    def detect_movement(self):
-        if(self.pos_right_hand[1] > (self.guitar_string_pos + 75))or(self.pos_right_hand[1] < (self.guitar_string_pos - 75)):
-            self.movement = True
+        dis = int(maxValY-minValY)
 
-    def speed(self, capture):
-        if self.numb_of_frames == capture.get(cv2.CAP_PROP_FPS):
+        # speed = dis/time
+        # return speed
 
-            if self.origin_point != self.pos_right_hand[1]:
-
-                if self.origin_point > self.pos_right_hand[1]:
-                    distance_speed = self.origin_point-self.pos_right_hand[1]
-                    self.speed_right_hand = distance_speed/1
-                    self.origin_point = self.pos_right_hand[1]
-                    self.numb_of_frames = 0.0
-                    print(self.speed_right_hand)
-                else:
-                    distance_speed = self.pos_right_hand[1]-self.origin_point
-                    self.speed_right_hand = distance_speed / 1
-                    self.origin_point = self.pos_right_hand[1]
-                    self.numb_of_frames = 0.0
-                    print(self.speed_right_hand)
-        else:
-            self.numb_of_frames += 1
+    # def calibrate_hands(self):
