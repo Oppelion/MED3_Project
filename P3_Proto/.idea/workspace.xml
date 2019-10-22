@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5abb0f8-1fda-4076-b1a9-803eb851ea18" name="Default Changelist" comment="" />
+    <list default="true" id="b5abb0f8-1fda-4076-b1a9-803eb851ea18" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Client.py" beforeDir="false" afterPath="$PROJECT_DIR$/Client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/Browse.VC.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_done/.vs/server_done/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../server_done/.vs/server_done/v16/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_done/.vs/server_done/v16/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../server_done/.vs/server_done/v16/Browse.VC.db" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
