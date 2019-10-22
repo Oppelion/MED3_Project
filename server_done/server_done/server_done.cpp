@@ -84,7 +84,6 @@ int main()
 		if ((client = accept(server, (SOCKADDR*)&clientAddr, &clientAddrSize)) != INVALID_SOCKET)
 		{
 			cout << "Client connected!" << endl;
-			cout << x << " " << y << endl;
 
 			char* _memPosIndexZero = new char[256];
 			recieveData(client, _memPosIndexZero, 256);
