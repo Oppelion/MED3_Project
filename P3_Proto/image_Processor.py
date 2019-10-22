@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 import math
-import time
 
 
 class imageProcessor:
@@ -15,7 +14,7 @@ class imageProcessor:
     movement = False
     frame = None
     mask = None
-    time = 0.0
+    #time = 0.0
     numb_of_frames = 0.0
     origin_point = 0.0
     speed_right_hand = 0.0
@@ -75,6 +74,7 @@ class imageProcessor:
         self.distance_hands()
         self.distance_init = self.distance
         self.guitar_string_pos = self.pos_right_hand[1]
+        return self.distance_init
 
     def distance_hands(self):
         if self.pos_left_hand[1] > self.pos_right_hand[1]:
@@ -85,6 +85,7 @@ class imageProcessor:
         distance_x = self.pos_left_hand[0] - self.pos_right_hand[0]
 
         self.distance = math.sqrt((distance_x**2) + (distance_y**2))
+        return self.distance
 
     def detect_movement(self):
         if(self.pos_right_hand[1] > (self.guitar_string_pos + 75))or(self.pos_right_hand[1] < (self.guitar_string_pos - 75)):
@@ -100,12 +101,12 @@ class imageProcessor:
                     self.speed_right_hand = distance_speed/1
                     self.origin_point = self.pos_right_hand[1]
                     self.numb_of_frames = 0.0
-                    print(self.speed_right_hand)
                 else:
                     distance_speed = self.pos_right_hand[1]-self.origin_point
                     self.speed_right_hand = distance_speed / 1
                     self.origin_point = self.pos_right_hand[1]
                     self.numb_of_frames = 0.0
-                    print(self.speed_right_hand)
         else:
             self.numb_of_frames += 1
+
+        return self.speed_right_hand
