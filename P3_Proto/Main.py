@@ -46,6 +46,9 @@ while True:
     IP.frame = cv2.drawKeypoints(IP.mask, IP.frame, np.array([]), (0, 0, 255),
                                  cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
+    stringPos = int(IP.guitar_string_pos)
+    cv2.rectangle(frame, (0, stringPos - 10), (640, stringPos + 10), (150, 150, 150))
+
     cv2.imshow('frame', frame)
     cv2.imshow('frame4', IP.frame)
     lastDist = int(distance)

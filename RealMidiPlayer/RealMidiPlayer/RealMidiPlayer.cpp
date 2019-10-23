@@ -16,14 +16,17 @@ bool getData = false;
 int dividend = 2;
 
 int section_Calculator() {
-	recvArray[0] = recvArray[0] * dividend;
-	recvArray[1] = recvArray[1] * dividend;
-	recvArray[2] = recvArray[2] * dividend;
-	sectionSize = recvArray[0] / (maxSection-1);    //Calculates the size that each section has to have as a function of the different sectors and the distance inputted.
+	sectionSize = 150 / (maxSection-1);    //Calculates the size that each section has to have as a function of the different sectors and the distance inputted.
 	for(int i = 0; i <= maxSection - 1; i++) {	//Calculates and assigns the starting point of each section.
 		sections[i] = sectionSize * i;			// Assignes the value based on its postions on the neck(A to B)
 	}
 
+	return 0;
+}
+
+int note_Assigner() {                           //This functions runs through the different sectors assigned above and finds out which one the inputted length matches to.
+	recvArray[1] = recvArray[1] * dividend;
+	recvArray[2] = recvArray[2] * 20;
 	if (recvArray[2] < 101 && recvArray[2] > 0) {
 		distInt = recvArray[2];
 		DistFloat = ((float)distInt / 100);
@@ -31,10 +34,6 @@ int section_Calculator() {
 	else {
 		cout << "The integer sent is above 100. Please beat the IP programmers.";
 	}
-	return 0;
-}
-
-int note_Assigner() {                           //This functions runs through the different sectors assigned above and finds out which one the inputted length matches to.
 	for (int i = 0; i < maxSection; i++) {
 		if (recvArray[1] >= sections[i] && recvArray[1] < sections[i + 1]) {
 			cout << "The interval is in sector ";            //These two lines writes which sector the length belongs to.
@@ -48,7 +47,6 @@ int note_Assigner() {                           //This functions runs through th
 }
 
 void playSound() {
-	section_Calculator(),
 	note_Assigner(),
 	playNote();
 }
@@ -58,6 +56,7 @@ int main(){
 	thread ServerThread(server_main);
 	cout << "New Thread" << endl;
 	cout << recvArray[0] + " " + recvArray[1] + recvArray[2] << endl;
+	section_Calculator();
 	while (true) {
 		if (getData == true) {
 			playSound();
