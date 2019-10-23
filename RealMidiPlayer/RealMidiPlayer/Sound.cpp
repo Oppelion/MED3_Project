@@ -26,7 +26,7 @@ int playNote() {
 	tsf_note_on(soundFont, 29, notes[playedSection] - 2, DistFloat);
 	tsf_note_on(soundFont, 29, notes[playedSection], DistFloat);
 	tsf_note_on(soundFont, 29, notes[playedSection] + 2, DistFloat);
-	SDL_Delay(500);
+	SDL_Delay(1500);
 	tsf_note_off(soundFont, 29, notes[playedSection] - 2);
 	tsf_note_off(soundFont, 29, notes[playedSection]);
 	tsf_note_off(soundFont, 29, notes[playedSection] + 2);

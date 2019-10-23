@@ -9,10 +9,10 @@ distance_init = 0.0
 speed = 0.0
 clientConnected = False
 nonCalibration = True
-dividend = 4
+dividend = 3
 
-lower_limit = (100, 150, 150)
-upper_limit = (140, 255, 255)
+lower_limit = (90, 215, 180)
+upper_limit = (120, 245, 220)
 
 while nonCalibration == False:
     ret, frame2 = cap.read()
@@ -57,6 +57,7 @@ while True:
         distance_init = distance_init / dividend
         distance = distance / dividend
         speed = speed / dividend
+        print(distance_init, " + ", distance, " + ", speed)
         Client.SendInfo(int(distance_init), int(distance), int(speed))
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
