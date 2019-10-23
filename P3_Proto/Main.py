@@ -20,14 +20,9 @@ while nonCalibration == False:
     hsv = cv2.cvtColor(frame2, cv2.COLOR_BGR2HSV)
     cv2.imshow('frame2', hsv)
     if cv2.waitKey(1) & 0xFF == ord('e'):
-        print(lower_limit)
-        print(upper_limit)
         pixel = frame2[240][330]
         lower_limit = np.array((pixel[0] - 15, pixel[1] - 15, pixel[2] - 15), dtype=np.uint8, ndmin=1)
         upper_limit = np.array((pixel[0] + 15, pixel[1] + 15, pixel[2] + 15), dtype=np.uint8, ndmin=1)
-        print(pixel)
-        print(lower_limit)
-        print(upper_limit)
         nonCalibration = False
 
 while True:
@@ -57,7 +52,7 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('w'):
         Client.SockConnect()
         clientConnected = True
-    if clientConnected == True and distance_init != 0.0 and distance != lastDist and speed != lastSpeed and IP.pos_right_hand[1] < 100 and IP.pos_right_hand[1] > 200:
+    if clientConnected == True and distance_init != 0.0 and distance != lastDist and speed != lastSpeed and IP.pos_right_hand[1] >= (IP.guitar_string_pos - 10) and IP.pos_right_hand[1] <= (IP.guitar_string_pos + 10):
         distance_init = distance_init / 100
         distance = distance / 100
         speed = speed / 100
