@@ -9,6 +9,7 @@ distance_init = 0.0
 speed = 0.0
 clientConnected = False
 nonCalibration = True
+dividend = 4
 
 lower_limit = (100, 150, 150)
 upper_limit = (140, 255, 255)
@@ -53,9 +54,9 @@ while True:
         Client.SockConnect()
         clientConnected = True
     if clientConnected == True and distance_init != 0.0 and distance != lastDist and speed != lastSpeed and IP.pos_right_hand[1] >= (IP.guitar_string_pos - 10) and IP.pos_right_hand[1] <= (IP.guitar_string_pos + 10):
-        distance_init = distance_init / 100
-        distance = distance / 100
-        speed = speed / 100
+        distance_init = distance_init / dividend
+        distance = distance / dividend
+        speed = speed / dividend
         Client.SendInfo(int(distance_init), int(distance), int(speed))
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
