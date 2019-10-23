@@ -15,10 +15,14 @@ int recvArray[3]; //place 0 is the max distance, place 1 is current distance, an
 bool getData = false;
 
 int section_Calculator() {
+	recvArray[0] = recvArray[0] * 100;
+	recvArray[1] = recvArray[1] * 100;
+	recvArray[2] = recvArray[2] * 100;
 	sectionSize = recvArray[0] / (maxSection-1);    //Calculates the size that each section has to have as a function of the different sectors and the distance inputted.
 	for(int i = 0; i <= maxSection - 1; i++) {	//Calculates and assigns the starting point of each section.
 		sections[i] = sectionSize * i;			// Assignes the value based on its postions on the neck(A to B)
 	}
+
 	if (recvArray[2] < 101 && recvArray[2] > 0) {
 		distInt = recvArray[2];
 		DistFloat = ((float)distInt / 100);
