@@ -21,7 +21,6 @@ int section_Calculator() {
 	for(int i = 0; i <= maxSection - 1; i++) {	//Calculates and assigns the starting point of each section.
 		sections[i] = sectionSize * i;			// Assignes the value based on its postions on the neck(A to B)
 	}
-	cout << "This line prints out recvArray[0], which is: " + recvArray[0];
 	return 0;
 }
 
