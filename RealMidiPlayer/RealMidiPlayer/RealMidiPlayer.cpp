@@ -16,7 +16,8 @@ bool getData = false;
 int dividend = 2;
 
 int section_Calculator() {
-	sectionSize = 150 / (maxSection-1);    //Calculates the size that each section has to have as a function of the different sectors and the distance inputted.
+	recvArray[0] = recvArray[0] * dividend;
+	sectionSize = recvArray[0] / (maxSection-1);    //Calculates the size that each section has to have as a function of the different sectors and the distance inputted.
 	for(int i = 0; i <= maxSection - 1; i++) {	//Calculates and assigns the starting point of each section.
 		sections[i] = sectionSize * i;			// Assignes the value based on its postions on the neck(A to B)
 	}
@@ -26,14 +27,11 @@ int section_Calculator() {
 
 int note_Assigner() {                           //This functions runs through the different sectors assigned above and finds out which one the inputted length matches to.
 	recvArray[1] = recvArray[1] * dividend;
-	recvArray[2] = recvArray[2] * 20;
-	if (recvArray[2] < 101 && recvArray[2] > 0) {
+	recvArray[2] = recvArray[2] * dividend;
+
 		distInt = recvArray[2];
 		DistFloat = ((float)distInt / 100);
-	}
-	else {
-		cout << "The integer sent is above 100. Please beat the IP programmers.";
-	}
+	
 	for (int i = 0; i < maxSection; i++) {
 		if (recvArray[1] >= sections[i] && recvArray[1] < sections[i + 1]) {
 			cout << "The interval is in sector ";            //These two lines writes which sector the length belongs to.
