@@ -49,8 +49,6 @@ int playNote() {
 																														SDL_Delay(1);
 																													}
 																													*/
-
-
 	return 0;
 }
 

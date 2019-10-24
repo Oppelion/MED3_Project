@@ -63,7 +63,7 @@ while True:
         distance = distance / dividend
         speed = speed / dividend
         print(distance_init, " + ", distance, " + ", speed)
-        Client.SendInfo(int(distance_init), int(distance), int(speed))
+        Client.SendInfo(0, int(distance), int(speed))
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
