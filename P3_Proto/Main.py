@@ -11,8 +11,8 @@ clientConnected = False
 nonCalibration = True
 dividend = 3
 
-lower_limit = (90, 215, 180)
-upper_limit = (120, 245, 220)
+lower_limit = (100, 150, 150)
+upper_limit = (140, 255, 255)
 
 while nonCalibration == False:
     ret, frame2 = cap.read()

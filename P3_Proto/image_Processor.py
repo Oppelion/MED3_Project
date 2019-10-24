@@ -21,6 +21,7 @@ class imageProcessor:
 
     def set_frame(self, frame):
         self.frame = frame
+        self.frame = cv2.GaussianBlur(self.frame, (5, 5), 0)
 
     def create_mask(self, image, lower_limit, upper_limit):
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -29,8 +30,9 @@ class imageProcessor:
 
     def reduce_noise(self, image):
         kernel = np.ones((5, 5), np.uint8)
+        kernel_Open = np.ones((9, 9), np.uint8)
         mask_opened = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)
-        mask_closed = cv2.morphologyEx(mask_opened, cv2.MORPH_CLOSE, kernel)
+        mask_closed = cv2.morphologyEx(mask_opened, cv2.MORPH_CLOSE, kernel_Open)
         self.mask = mask_closed
         return mask_closed
 
@@ -39,7 +41,8 @@ class imageProcessor:
         params = cv2.SimpleBlobDetector_Params()
 
         params.filterByArea = True
-        params.minArea = 200
+        params.minArea = 600
+        params.maxArea = 15000
         params.filterByColor = True
         params.blobColor = 255
         params.filterByCircularity = False
