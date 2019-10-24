@@ -37,7 +37,9 @@ while True:
     if len(IP.pts) == 2:
         distance = IP.distance_hands()
         if IP.distance_init == 0.0:
-            distance_init = IP.calibrate()
+            if cv2.waitKey(1) & 0xFF == ord('l'):
+                distance_init = IP.calibrate() / dividend
+                Client.SendInfo(int(distance_init), 0, 0)
     IP.detect_movement()
     if IP.movement:
         speed = IP.speed(cap)
