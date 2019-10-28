@@ -14,6 +14,8 @@ int distInt;
 int recvArray[3]; //place 0 is the max distance, place 1 is current distance, and the velocity
 bool getData = false;
 int dividend = 3;
+int playedSounds[2][10];
+int whichSound = 0;
 
 int section_Calculator() {
 	recvArray[0] = recvArray[0] * dividend * 1.2;
@@ -49,8 +51,13 @@ void playSound() {
 }
 
 int main(){
+	for (int i = 0; i < 10; i++)
+	{
+		playedSounds[1][i] = 0;
+	}
 	start_Sound();
 	thread ServerThread(server_main);
+	ServerThread.detach();
 	cout << "New Thread" << endl;
 	cout << recvArray[0] + " " + recvArray[1] + recvArray[2] << endl;
 
@@ -60,8 +67,14 @@ int main(){
 			{
 				section_Calculator();
 			}
+			whichSound++;
+			if (whichSound == 10)
+			{
+				whichSound = 0;
+			}
 			playSound();
 			getData = false;
 		};
+		endSound();
 	}
 }

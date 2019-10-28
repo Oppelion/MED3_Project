@@ -21,15 +21,17 @@ Start playing a note
    key: note value between 0 and 127 (60 being middle C)
  vel: velocity as a float between 0.0 (equal to note off) and 1.0 (full)
  */
+
 int playNote() {
-	//These three lines below play the three notes that make up the cord for each section                                                                                                                //int i, Notes[7] = { 48, 50, 52, 53, 55, 57, 59 };
-	tsf_note_on(soundFont, 29, notes[playedSection] - 2, DistFloat);
-	tsf_note_on(soundFont, 29, notes[playedSection], DistFloat);
-	tsf_note_on(soundFont, 29, notes[playedSection] + 2, DistFloat);
-	SDL_Delay(1500);
-	tsf_note_off(soundFont, 29, notes[playedSection] - 2);
-	tsf_note_off(soundFont, 29, notes[playedSection]);
-	tsf_note_off(soundFont, 29, notes[playedSection] + 2);
+	//These three lines below play the three notes that make up the cord for each section             //int i, Notes[7] = { 48, 50, 52, 53, 55, 57, 59 };
+	if (playedSounds[1][whichSound] == 0)
+	{
+		playedSounds[0][whichSound] = clock();
+		playedSounds[1][whichSound] = playedSection;
+		tsf_note_on(soundFont, 29, notes[playedSection] - 2, DistFloat);
+		tsf_note_on(soundFont, 29, notes[playedSection], DistFloat);
+		tsf_note_on(soundFont, 29, notes[playedSection] + 2, DistFloat);
+	}
 	
 																													/*for (int i = 0; i <= 127; i++) {
 																														SDL_Delay(1000);
@@ -50,6 +52,20 @@ int playNote() {
 																													}
 																													*/
 	return 0;
+}
+
+void endSound()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		if (clock() >= playedSounds[0][i] + 1000)
+		{
+			tsf_note_off(soundFont, 29, notes[playedSounds[1][i] - 2]);
+			tsf_note_off(soundFont, 29, notes[playedSounds[1][i]]);
+			tsf_note_off(soundFont, 29, notes[playedSounds[1][i] + 2]);
+			playedSounds[1][i] = 0;
+		}
+	}
 }
 
 int start_Sound() {
