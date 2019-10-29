@@ -1,6 +1,3 @@
-﻿  RealMidiPlayer.cpp
-C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(21,41): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Sound.cpp
-  Generating Code...
-C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(22,29): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  Sound.cpp
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\Sound.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   RealMidiPlayer.vcxproj -> C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe
