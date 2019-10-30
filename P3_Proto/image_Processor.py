@@ -88,16 +88,6 @@ class imageProcessor:
         self.distance = math.sqrt((distance_x**2) + (distance_y**2))  # ......Formula for finding length of a vector.
         return self.distance  # ..............................................Return distance between hands.
 
-    # def detect_movement(self):
-    #     if(self.pos_right_hand[1] > (self.guitar_string_pos + 75)) or \
-    #            (self.pos_right_hand[1] < (self.guitar_string_pos - 75)):
-    #       self.speed()
-    #         self.speed_control()
-    #          self.movement = True
-    #     else:
-    #       self.speed_right_hand = 0
-    #       self.movement = False
-
     def speed(self):  # .....................................................Method for calculating speed.
         if self.origin_point != self.pos_right_hand[1]:  # ..................Checks if right hand has moved.
             if self.origin_point > self.pos_right_hand[1]:  # ...............Checks if right hand has moved down.
