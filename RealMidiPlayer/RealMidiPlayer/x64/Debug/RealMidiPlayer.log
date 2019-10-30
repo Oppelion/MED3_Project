@@ -1,3 +1,4 @@
-﻿  Sound.cpp
-C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\Sound.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+﻿  RealMidiPlayer.cpp
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(36,20): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(54): warning C4715: 'noteAssigner': not all control paths return a value
   RealMidiPlayer.vcxproj -> C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe

@@ -65,10 +65,6 @@ void endSound()
 			
 
 			std::cout << "TURN OFF";*/
-			std::cout << "playedSounds ";
-			std::cout << playedSounds[0][i] + 1500 << std::endl;
-			std::cout << "Clock: ";
-			std::cout << clock() << std::endl;
 			tsf_note_off(soundFont, 29, notes[playedSounds[1][i] - 2]);
 			tsf_note_off(soundFont, 29, notes[playedSounds[1][i]]);
 			tsf_note_off(soundFont, 29, notes[playedSounds[1][i] + 2]);

@@ -13,13 +13,30 @@ float sections[maxSection];         //This array stores the size of the differen
 bool getData = false;
 int a = 0;
 
-int section_Calculator() {
+struct Note
+{
+	long long int timer = clock();
+	int section = noteAssigner();
+	Note* _nextNote = NULL;
+};
+typedef Note* _NotePtr;
+
+void newNote(_NotePtr& _newNote)
+{
+	_NotePtr _tmpPtr;
+	_tmpPtr = new Note;
+
+	_newNote-> _nextNote = _tmpPtr;
+
+	_newNote = _tmpPtr;
+}
+
+void section_Calculator() {
 	recvArray[0] = recvArray[0]; //* dividend * 1.2f;
 	float sectionSize = recvArray[0] / (maxSection-1);    //Calculates the size that each section has to have as a function of the different sectors and the distance inputted.
 	for(int i = 0; i <= maxSection - 1; i++) {	//Calculates and assigns the starting point of each section.
 		sections[i] = sectionSize * i;			// Assignes the value based on its postions on the neck(A to B)
 	}
-	return 0;
 }
 
 int noteAssigner()
@@ -54,108 +71,6 @@ void keyPressedFunction(){
 		if (a >= 13) {
 			a = 0;
 		}
-	/*
-	if(GetKeyState('A') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 9;
-		recvArray[2] = 40;
-	}
-	
-	if(GetKeyState('S') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 19;
-		recvArray[2] = 40;
-	}
-
-	if(GetKeyState('D') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 29;
-		recvArray[2] = 40;
-	}
-
-	if(GetKeyState('F') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 39;
-		recvArray[2] = 40;
-	}
-	
-	if(GetKeyState('G') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 49;
-		recvArray[2] = 40;
-	}
-	
-	if(GetKeyState('H') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 59;
-		recvArray[2] = 40;
-	}
-	
-	if(GetKeyState('J') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 69;
-		recvArray[2] = 40;
-	}
-	
-	if(GetKeyState('K') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 79;
-		recvArray[2] = 40;
-	}
-	
-	if(GetKeyState('L') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 89;
-		recvArray[2] = 40;
-	}
-	
-	if(GetKeyState('F') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 99;
-		recvArray[2] = 40;
-	}
-
-	if(GetKeyState('Z') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 109;
-		recvArray[2] = 40;
-	}
-	if(GetKeyState('X') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 119;
-		recvArray[2] = 40;
-	}
-	if(GetKeyState('C') & 0x8000)
-	{
-		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 129;
-		recvArray[2] = 40;
-	}*/
 } //Delete me later
 
 int main()
@@ -166,6 +81,9 @@ int main()
 	cout << "New Thread" << endl;
 
 	int whichSound = 0;
+	_NotePtr _QueueIN, _QueueOUT;
+	_QueueIN = new Note;
+	_QueueOUT = _QueueIN;
 	while (true) {
 		keyPressedFunction();
 		if (getData == true) {
@@ -177,6 +95,12 @@ int main()
 			if (whichSound == 10)
 			{
 				whichSound = 0;
+			}
+			newNote(_QueueIN);
+			cout << "Starting to print queue:\n";
+			_NotePtr iter;
+			for (iter = _QueueOUT; iter != NULL; iter = iter->_nextNote) {
+				cout << iter->section << ", " << iter->_nextNote << ", " << iter->timer << "\n";
 			}
 			playNote(whichSound);
 			//SDL_Delay(500);
