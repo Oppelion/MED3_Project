@@ -22,17 +22,11 @@ Start playing a note
  vel: velocity as a float between 0.0 (equal to note off) and 1.0 (full)
  */
 
-void playNote(int whichSound) {
+void playNote(int section) 
+{
+	std::cout << "PlayNote" << std::endl;
 	//These three lines below play the three notes that make up the cord for each section             //int i, Notes[7] = { 48, 50, 52, 53, 55, 57, 59 };
-	if (playedSounds[1][whichSound] == 0)
-	{
-		playedSounds[0][whichSound] = clock();
-		playedSounds[1][whichSound] = noteAssigner();
-		tsf_note_on(soundFont, 29, notes[playedSounds[1][whichSound]] - 2, volumeAssigner());
-		tsf_note_on(soundFont, 29, notes[playedSounds[1][whichSound]], volumeAssigner());
-		tsf_note_on(soundFont, 29, notes[playedSounds[1][whichSound]] + 2, volumeAssigner());
-
-	}
+		tsf_note_on(soundFont, 29, notes[section], volumeAssigner());
 	
 																													/*for (int i = 0; i <= 127; i++) {
 																														SDL_Delay(1000);
@@ -54,23 +48,11 @@ void playNote(int whichSound) {
 																													*/
 }
 
-void endSound()
+void endSound(int section)
 {
-	for (int i = 0; i < 10; i++)
-	{
-		if (clock() >= playedSounds[0][i] + 1500)
-		{
-			/*std::cout << "Played sound note: ";
-			std::cout << playedSounds[1][i] << std::endl;
-			
-
-			std::cout << "TURN OFF";*/
-			tsf_note_off(soundFont, 29, notes[playedSounds[1][i] - 2]);
-			tsf_note_off(soundFont, 29, notes[playedSounds[1][i]]);
-			tsf_note_off(soundFont, 29, notes[playedSounds[1][i] + 2]);
-			playedSounds[1][i] = 0;
-		}
-	}
+	std::cout << "endSound has std" << std::endl;
+	std::cout << tsf_active_voice_count(soundFont) << std::endl;
+	tsf_note_off(soundFont, 29, notes[section]);
 }
 
 int start_Sound() {

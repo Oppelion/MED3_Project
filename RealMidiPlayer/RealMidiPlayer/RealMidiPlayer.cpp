@@ -12,7 +12,7 @@ int playedSounds[2][10];
 float sections[maxSection];         //This array stores the size of the different sectors for the sorting algorithm
 bool getData = false;
 int a = 0;
-
+bool b = true;
 struct Note
 {
 	long long int timer = clock();
@@ -23,12 +23,40 @@ typedef Note* _NotePtr;
 
 void newNote(_NotePtr& _newNote)
 {
+	cout << "new note" << endl;
 	_NotePtr _tmpPtr;
 	_tmpPtr = new Note;
 
 	_newNote-> _nextNote = _tmpPtr;
 
 	_newNote = _tmpPtr;
+}
+
+void stopNote(_NotePtr& _QueueOUT, _NotePtr& _QueueIN)
+{
+
+	_NotePtr _tmpPtrOUT = _QueueOUT->_nextNote;
+	_NotePtr _tmpPtrIN = _QueueIN->_nextNote;
+	cout << "step 2" << endl;
+	if (_QueueOUT->_nextNote != NULL)
+	{
+
+		cout << _QueueOUT->timer << endl;
+
+		if (_QueueOUT->timer + 1000 <= clock())
+		{
+			cout << "okay, here is some stuff" << endl;
+			endSound(_QueueOUT->section); //temp note call to an if statement in sound.cpp. This should turn the sound off and based on the clock
+
+			if (_QueueOUT->_nextNote != _QueueIN->_nextNote);
+			{
+				delete _QueueOUT;
+				_QueueOUT = _tmpPtrOUT;
+				cout << "deleted oldest" << endl;
+				b = true;
+			}
+		}
+	}
 }
 
 void section_Calculator() {
@@ -51,6 +79,7 @@ int noteAssigner()
 		}
 	}
 	//cout << "The length inputted is either above or below the maximum arm distance.";
+	return 1;
 }
 
 float volumeAssigner()
@@ -63,14 +92,15 @@ float volumeAssigner()
 
 //This function is for testing
 void keyPressedFunction(){
+	if(b)
+	if (a < 12) {
 		getData = true;
-		recvArray[0] = 130;
-		recvArray[1] = 9 + (a * 10);
+		recvArray[0] = a;
+		recvArray[1] = 10 + (a * 10);
 		recvArray[2] = 100;
 		a++;
-		if (a >= 13) {
-			a = 0;
-		}
+		b = false;
+	}
 } //Delete me later
 
 int main()
@@ -80,7 +110,6 @@ int main()
 	ServerThread.detach();
 	cout << "New Thread" << endl;
 
-	int whichSound = 0;
 	_NotePtr _QueueIN, _QueueOUT;
 	_QueueIN = new Note;
 	_QueueOUT = _QueueIN;
@@ -91,21 +120,22 @@ int main()
 			{
 				section_Calculator();
 			}
-			whichSound++;
-			if (whichSound == 10)
-			{
-				whichSound = 0;
-			}
+			
 			newNote(_QueueIN);
 			cout << "Starting to print queue:\n";
 			_NotePtr iter;
 			for (iter = _QueueOUT; iter != NULL; iter = iter->_nextNote) {
-				cout << iter->section << ", " << iter->_nextNote << ", " << iter->timer << "\n";
+				cout << iter->timer << ", " << iter->_nextNote << iter->section << "\n";
 			}
-			playNote(whichSound);
+			cout << "\n";
+			playNote(_QueueIN->section);
+			cout << "Step 1" << endl;
 			//SDL_Delay(500);
 			getData = false;
+			cout << "Step 3" << endl;
 		};
-		endSound();
+		cout << "Step 4" << endl;
+
+		stopNote(_QueueOUT, _QueueIN);
 	}
 }
