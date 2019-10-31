@@ -1,52 +1,33 @@
-from image_Processor import *
-import Client
-
-IP = imageProcessor()
-cap = cv2.VideoCapture(0)
+from P3_Proto import Client
+from P3_Proto.image_Processor import*
 
 distance = 0.0
 distance_init = 0.0
 speed = 0.0
-clientConnected = False
-nonCalibration = True
 dividend = 3
 
-lower_limit = (100, 150, 150)
-upper_limit = (140, 255, 255)
+IP = imageProcessor()  # .....................................................Instantiate imageProcessor object. 
+cap = cv2.VideoCapture(0)  # .................................................Begin video capture.
 
-while nonCalibration == False:
-    ret, frame2 = cap.read()
-    cv2.rectangle(frame2, (328, 238), (332, 242), (150, 150, 150))
+while True:  # ................................................................Infinite loop to run the program.
+    ret, frame = cap.read()  # ................................................Read from the camera capture.
 
-    hsv = cv2.cvtColor(frame2, cv2.COLOR_BGR2HSV)
-    cv2.imshow('frame2', hsv)
-    if cv2.waitKey(1) & 0xFF == ord('e'):
-        pixel = frame2[240][330]
-        lower_limit = np.array((pixel[0] - 15, pixel[1] - 15, pixel[2] - 15), dtype=np.uint8, ndmin=1)
-        upper_limit = np.array((pixel[0] + 15, pixel[1] + 15, pixel[2] + 15), dtype=np.uint8, ndmin=1)
-        nonCalibration = False
-
-while True:
-    ret, frame = cap.read()
-
-    IP.set_frame(frame)
-    IP.mask = IP.create_mask(IP.frame, lower_limit, upper_limit)
-    IP.frame = IP.reduce_noise(IP.mask)
-    IP.frame = IP.detect_blobs(IP.frame)
-    IP.locate_hands(IP.frame)
-    if len(IP.pts) == 2:
-        distance = IP.distance_hands()
-        if IP.distance_init == 0.0:
-            if cv2.waitKey(1) & 0xFF == ord('l'):
-                distance_init = IP.calibrate() / dividend
-                Client.SendInfo(int(distance_init), 0, 0)
-    IP.detect_movement()
-    if IP.movement:
-        speed = IP.speed(cap)
-        IP.movement = False
+    IP.set_frame(frame)  # ....................................................Set the frame and apply blur.
+    IP.mask = IP.create_mask(IP.frame)  # .....................................Create binary mask with blobs.
+    IP.frame = IP.reduce_noise(IP.mask)  # ....................................Reduce noise in the mask.
+    IP.frame = IP.detect_blobs(IP.frame)  # ...................................Detect blobs in the mask.
+    IP.locate_hands(IP.frame)  # ..............................................Locate which blobs are hands.
+    if len(IP.pts) == 2:  # ...................................................Checks if there are exactly two blobs.
+        distance = IP.distance_hands()  # .....................................Finds distance between hands.
+        if IP.distance_init == 0.0:  # ........................................Checks if initial distance has been found
+            if cv2.waitKey(1) & 0xFF == ord('l'):  # ..........................Checks if L is pressed.
+                distance_init = IP.calibrate() / dividend  # ..................Calibrate and adjust value of distance.
+                Client.SendInfo(int(distance_init), 0, 0)  # ..................Send distance_init to the server.
+        speed = IP.speed()  # .................................................Calculate speed of right hand.
+        speed = IP.speed_control()  # .........................................Adjust value of speed to be 0 - 100.
 
     IP.frame = cv2.drawKeypoints(IP.mask, IP.frame, np.array([]), (0, 0, 255),
-                                 cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+                                 cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)  # Draw key points on the blobs.
 
     stringPos = int(IP.guitar_string_pos)
     cv2.rectangle(frame, (0, stringPos - 10), (640, stringPos + 10), (150, 150, 150))
@@ -58,10 +39,15 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('w'):
         Client.SockConnect()
         clientConnected = True
-    if clientConnected == True and distance_init != 0.0 and distance != lastDist and speed != lastSpeed and IP.pos_right_hand[1] >= (IP.guitar_string_pos - 10) and IP.pos_right_hand[1] <= (IP.guitar_string_pos + 10):
-        distance_init = distance_init / dividend
+    print(IP.guitar_string_pos)
+    print(IP.pos_right_hand[1])
+    if IP.pos_right_hand[1] == IP.guitar_string_pos:
+        print('Hello strikes back')
+
+    if (Client.clientConnected is True) and (distance_init != 0.0) and (IP.pos_right_hand[1] >= IP.guitar_string_pos - 10) and \
+            (IP.pos_right_hand[1] <= IP.guitar_string_pos + 10):
+        # distance_init = distance_init / dividend
         distance = distance / dividend
-        speed = speed / dividend
         print(distance_init, " + ", distance, " + ", speed)
         Client.SendInfo(0, int(distance), int(speed))
     if cv2.waitKey(1) & 0xFF == ord("q"):
