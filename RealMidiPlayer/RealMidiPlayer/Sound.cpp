@@ -3,7 +3,7 @@
 #include "tsf.h"
 #include <String>
 bool soundLoad = true;
-int notes[13] = { 0, 96, 90, 84, 78, 72, 66, 60, 54, 48, 42, 36, 30 };
+int notes[13] = { 0, 96, 90, 84, 78, 72, 66, 60, 54, 50, 48, 46, 44 };
 // Holds the global instance pointer(copy)
 static tsf* soundFont;
 

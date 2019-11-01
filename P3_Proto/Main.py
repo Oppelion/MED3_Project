@@ -1,5 +1,5 @@
-from P3_Proto import Client
-from P3_Proto.image_Processor import*
+import Client
+from image_Processor import*
 
 distance = 0.0
 distance_init = 0.0

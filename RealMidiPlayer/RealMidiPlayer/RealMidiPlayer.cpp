@@ -37,13 +37,12 @@ void stopNote(_NotePtr& _QueueOUT, _NotePtr& _QueueIN)
 
 	_NotePtr _tmpPtrOUT = _QueueOUT->_nextNote;
 	_NotePtr _tmpPtrIN = _QueueIN->_nextNote;
-	cout << "step 2" << endl;
 	if (_QueueOUT->_nextNote != NULL)
 	{
 
 		cout << _QueueOUT->timer << endl;
 
-		if (_QueueOUT->timer + 1000 <= clock())
+		if (_QueueOUT->timer + 2000 <= clock())
 		{
 			cout << "okay, here is some stuff" << endl;
 			endSound(_QueueOUT->section); //temp note call to an if statement in sound.cpp. This should turn the sound off and based on the clock
@@ -114,7 +113,7 @@ int main()
 	_QueueIN = new Note;
 	_QueueOUT = _QueueIN;
 	while (true) {
-		keyPressedFunction();
+		//keyPressedFunction();
 		if (getData == true) {
 			if (recvArray[0] != 0) 
 			{
@@ -129,12 +128,9 @@ int main()
 			}
 			cout << "\n";
 			playNote(_QueueIN->section);
-			cout << "Step 1" << endl;
 			//SDL_Delay(500);
 			getData = false;
-			cout << "Step 3" << endl;
 		};
-		cout << "Step 4" << endl;
 
 		stopNote(_QueueOUT, _QueueIN);
 	}

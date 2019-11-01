@@ -1,4 +1,4 @@
 ﻿  RealMidiPlayer.cpp
-C:\Users\Steff\Documents\GitHub\MED3_Project\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(51,52): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\Steff\Documents\GitHub\MED3_Project\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(64,20): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  RealMidiPlayer.vcxproj -> C:\Users\Steff\Documents\GitHub\MED3_Project\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(50,52): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(63,20): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  RealMidiPlayer.vcxproj -> C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe
