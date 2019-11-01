@@ -98,9 +98,7 @@ class imageProcessor:
                 distance_speed = self.pos_right_hand[1] - self.origin_point  # Find distance on Y axis.
                 self.speed_right_hand = distance_speed  # ...................Sets speed.
                 self.origin_point = self.pos_right_hand[1]  # ...............Sets origin as right hand pos for next time
-        return self.speed_right_hand  # .....................................Return speed of right hand.
 
-    def speed_control(self):  # .............................................Method to adjust value of speed.
         if self.speed_right_hand <= 10:  # ...................................checks if value of speed is less than 8.
             self.speed_right_hand = 0  # ....................................Sets speed to 0.
         if 8 < self.speed_right_hand < 130:  # ..............................Checks if speed is within range.
