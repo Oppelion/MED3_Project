@@ -5,8 +5,6 @@ distance = 0.0
 distance_init = 0.0
 speed = 0.0
 dividend = 3
-img_counter = 0
-img_counter2 = 0
 
 IP = imageProcessor()  # ......................................................Instantiate imageProcessor object.
 cap = cv2.VideoCapture(0)  # ..................................................Begin video capture.
@@ -26,7 +24,6 @@ while True:  # ................................................................I
                 distance_init = IP.calibrate() / dividend  # ..................Calibrate and adjust value of distance.
                 Client.SendInfo(int(distance_init), 0, 0)  # ..................Send distance_init to the server.
         speed = IP.speed()  # .................................................Calculate speed of right hand.
-        speed = IP.speed_control()  # .........................................Adjust value of speed to be 0 - 100.
 
     IP.frame = cv2.drawKeypoints(IP.mask, IP.frame, np.array([]), (0, 0, 255),
                                  cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)  # Draw key points on the blobs.
