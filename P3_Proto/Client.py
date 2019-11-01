@@ -1,26 +1,18 @@
 import socket
 
-# makes socket into an object, with the constructor set to the standard
-# Address Format Internet and Socket Stream which is TCP
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-clientConnected = False
 
+class client:
+    clientConnected = False
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # ..Make a socket object.
+    # ............................................................Address Format Internet and Socket Stream which is TCP
 
-# Create a socket
-def SockConnect():
-    # connects to the local host ip at port 80.000
-    sock.connect(('localhost', 60000))
+    def SockConnect(self):  # ....................................Method to connect to the server.
+        self.sock.connect(('localhost', 60000))  # ...............connects to the local host ip at port 80.000.
 
+    def SendInfo(self, x, y, z):  # ..............................Method that sends three variables to the server.
+        data = [x, y, z]  # ......................................Array that stores the data to be sent.
+        data2 = bytearray(data)  # ...............................Convert the data into bytes, stored in a new array.
+        self.sock.sendall(data2)  # ..............................function call for sending to the defined IP and Port.
 
-# Send two variables x and y
-def SendInfo(x, y, z):
-
-    data = [x, y, z]
-    data2 = bytearray(data)
-    # function call for sending to the defined IP and Port
-    sock.sendall(data2)
-
-
-# Closes the socket so that it is unused
-def CloseSocket():
-    sock.close()
+    def CloseSocket(self):  # ....................................Method to close the socket.
+        self.sock.close()  # .....................................Closes the socket.
