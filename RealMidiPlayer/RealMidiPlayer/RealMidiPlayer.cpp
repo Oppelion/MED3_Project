@@ -1,7 +1,8 @@
 #include <iostream>
-#include <String>
+#include <string>
 #include "Sound.h"
 #include "server_done.h"
+#include <fstream>
 
 using namespace std;
 
@@ -20,6 +21,17 @@ struct Note
 	Note* _nextNote = NULL;
 };
 typedef Note* _NotePtr;
+
+int write2File(string a, int b)
+{
+	ofstream testFile;
+	testFile.open("Iteration2_test.txt", ios::out | ios::app | ios::binary);
+	testFile << a;
+	testFile << b;
+	testFile << " !delete this! ";
+	testFile.close();
+	return 0;
+}
 
 void newNote(_NotePtr& _newNote)
 {
@@ -59,11 +71,16 @@ void stopNote(_NotePtr& _QueueOUT, _NotePtr& _QueueIN)
 }
 
 void section_Calculator() {
-	recvArray[0] = recvArray[0]; //* dividend * 1.2f;
-	float sectionSize = recvArray[0] / (maxSection-1);    //Calculates the size that each section has to have as a function of the different sectors and the distance inputted.
-	for(int i = 0; i <= maxSection - 1; i++) {	//Calculates and assigns the starting point of each section.
+	unsigned int maxDistance;
+	maxDistance = (float)recvArray[0] * 3 * 1.2f;
+	float sectionSize = maxDistance / (maxSection - 1);    //Calculates the size that each section has to have as a function of the different sectors and the distance inputted.
+	for (int i = 0; i <= maxSection - 1; i++) {	//Calculates and assigns the starting point of each section.
 		sections[i] = sectionSize * i;			// Assignes the value based on its postions on the neck(A to B)
 	}
+	cout << "Max distance for the guitar ";
+	cout << maxDistance << endl;
+	cout << "distance of each distance ";
+	cout << sectionSize << endl;
 }
 
 int noteAssigner()
@@ -73,8 +90,9 @@ int noteAssigner()
 	for (int i = 0; i < maxSection; i++) {
 		if (recvArray[1] >= sections[i] && recvArray[1] < sections[i + 1]) {
 			int sector = i + 1;
+			write2File("Segmented note-interval = ", sector);
 			return sector;
-			//cout << "RETURNED" << endl;
+			//cout << "RETURNED" << endl
 		}
 	}
 	//cout << "The length inputted is either above or below the maximum arm distance.";
@@ -89,19 +107,6 @@ float volumeAssigner()
 	return ((float)distInt / 100);
 }
 
-//This function is for testing
-void keyPressedFunction(){
-	if(b)
-	if (a < 12) {
-		getData = true;
-		recvArray[0] = a;
-		recvArray[1] = 10 + (a * 10);
-		recvArray[2] = 100;
-		a++;
-		b = false;
-	}
-} //Delete me later
-
 int main()
 {
 	start_Sound();
@@ -113,7 +118,6 @@ int main()
 	_QueueIN = new Note;
 	_QueueOUT = _QueueIN;
 	while (true) {
-		//keyPressedFunction();
 		if (getData == true) {
 			if (recvArray[0] != 0) 
 			{
