@@ -1,5 +1,5 @@
-from P3_Proto.Client import*
-from P3_Proto.image_Processor import*
+from Client import*
+from image_Processor import*
 
 dividend = 3
 
