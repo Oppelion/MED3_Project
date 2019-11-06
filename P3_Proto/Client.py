@@ -2,6 +2,7 @@ import socket
 
 
 class client:
+    spamFilter = True
     clientConnected = False
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # ..Make a socket object.
     # ............................................................Address Format Internet and Socket Stream which is TCP
@@ -13,6 +14,7 @@ class client:
         data = [x, y, z]  # ......................................Array that stores the data to be sent.
         data2 = bytearray(data)  # ...............................Convert the data into bytes, stored in a new array.
         self.sock.sendall(data2)  # ..............................function call for sending to the defined IP and Port.
+        print(self.spamFilter)
 
     def CloseSocket(self):  # ....................................Method to close the socket.
         self.sock.close()  # .....................................Closes the socket.
