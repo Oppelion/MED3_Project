@@ -28,6 +28,10 @@ while True:  # ................................................................I
 
     stringPos = int(IP.guitar_string_pos)
     cv2.rectangle(frame, (0, stringPos - 10), (640, stringPos + 10), (150, 150, 150))
+    if IP.distance < ((IP.distance_init * 3) * 1.2):
+        frame = cv2.line(frame, (IP.pos_left_hand[0], IP.pos_left_hand[1]), (IP.pos_right_hand[0], IP.pos_right_hand[1]), 0, thickness=5)
+    else:
+        frame = cv2.line(frame, (IP.pos_left_hand[0], IP.pos_left_hand[1]), (IP.pos_right_hand[0], IP.pos_right_hand[1]), (0, 0, 255), thickness=5)
 
     cv2.imshow('frame', frame)
     cv2.imshow('frame4', IP.frame)
