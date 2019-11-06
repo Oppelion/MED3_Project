@@ -1,1 +1,192 @@
-Played note = 96 !delete this! Played note = 96 !delete this! Played note = 96 !delete this! Played note = 96 !delete this! Played note = 96 !delete this! Played note = 96 !delete this! Played note = 96 !delete this! Played note = 96 !delete this! Played note = 96 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! Segmented note-interval = 4 !delete this! Played note = 78 !delete this! 
+The volume of the played sound in float = 00
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 00
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 850.85
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 820.82
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 420.42
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 780.78
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 300.3
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 250.25
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 250.25
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 340.34
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 290.29
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 200.2
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 200.2
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 140.14
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 280.28
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 150.15
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 80.08
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 290.29
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 200.2
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 00
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 00
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 00
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 00
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 00
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 430.43
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 180.18
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 260.26
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 210.21
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 350.35
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 420.42
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 260.26
+ 
+ 
+ 
+ 
+   
+The volume of the played sound in float = 100.1
+ 
+ 
+ 
+ 
+   

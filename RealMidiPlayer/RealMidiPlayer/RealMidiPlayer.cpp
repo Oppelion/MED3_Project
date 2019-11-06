@@ -22,14 +22,17 @@ struct Note
 };
 typedef Note* _NotePtr;
 
-int write2File(string a, int b)
+int write2File(string a, int b=0, float c = 0)
 {
 	ofstream testFile;
 	testFile.open("Iteration2_test.txt", ios::out | ios::app | ios::binary);
+	cout << "text file is open" << endl;
 	testFile << a;
 	testFile << b;
-	testFile << " !delete this! ";
+	testFile << c;
+	testFile << "\n \n \n \n \n \r \r \r" << endl;
 	testFile.close();
+	cout << "text file is closed" << endl;
 	return 0;
 }
 
@@ -56,7 +59,7 @@ void stopNote(_NotePtr& _QueueOUT, _NotePtr& _QueueIN)
 
 		if (_QueueOUT->timer + 2000 <= clock())
 		{
-			cout << "okay, here is some stuff" << endl;
+			cout << "Clock has reach endtimer" << endl;
 			endSound(_QueueOUT->section); //temp note call to an if statement in sound.cpp. This should turn the sound off and based on the clock
 
 			if (_QueueOUT->_nextNote != _QueueIN->_nextNote);
@@ -79,18 +82,18 @@ void section_Calculator() {
 	}
 	cout << "Max distance for the guitar ";
 	cout << maxDistance << endl;
-	cout << "distance of each distance ";
+	cout << "distance of each segment ";
 	cout << sectionSize << endl;
 }
 
 int noteAssigner()
 {                           //This functions runs through the different sectors assigned above and finds out which one the inputted length matches to.
-	recvArray[1] = recvArray[1];// *dividend;
+	recvArray[1] = recvArray[1]*dividend;
 	
 	for (int i = 0; i < maxSection; i++) {
 		if (recvArray[1] >= sections[i] && recvArray[1] < sections[i + 1]) {
 			int sector = i + 1;
-			write2File("Segmented note-interval = ", sector);
+			
 			return sector;
 			//cout << "RETURNED" << endl
 		}
@@ -101,10 +104,10 @@ int noteAssigner()
 
 float volumeAssigner()
 {
-	recvArray[2] = recvArray[2]; //* dividend;
-
-	int distInt = recvArray[2];
-	return ((float)distInt / 100);
+	cout << "volumeAssigner has been execute" << endl;
+	float distFloat = (float)recvArray[2] / 100;
+	write2File("The volume of the played sound in float = ", recvArray[2], distFloat);
+	return distFloat;
 }
 
 int main()
@@ -128,7 +131,7 @@ int main()
 			cout << "Starting to print queue:\n";
 			_NotePtr iter;
 			for (iter = _QueueOUT; iter != NULL; iter = iter->_nextNote) {
-				cout << iter->timer << ", " << iter->_nextNote << iter->section << "\n";
+				cout << iter->timer << " <- created time, " << iter->_nextNote << "<- pointer adress" << iter->section << "<- section\n";
 			}
 			cout << "\n";
 			playNote(_QueueIN->section);

@@ -28,7 +28,6 @@ void playNote(int section)
 	//These three lines below play the three notes that make up the cord for each section             //int i, Notes[7] = { 48, 50, 52, 53, 55, 57, 59 };
 		tsf_note_on(soundFont, 29, notes[section], volumeAssigner());
 		int b = notes[section];
-		write2File("Played note = ", b);
 	
 																													/*for (int i = 0; i <= 127; i++) {
 																														SDL_Delay(1000);

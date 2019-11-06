@@ -35,9 +35,6 @@ void recieveData(SOCKET s, char* _memPosIndexZero, int len) {		// Function calle
 		if (iResult > 0)
 		{
 			passData(_memPosIndexZero);
-			printf("First point: %d\n", *_memPosIndexZero);		//Print dereferenced value of the memory position of recieved array[0]
-			printf("Second point: %d\n", *(_memPosIndexZero + 1));	//Print dereferenced value of the memory position + 1(next memory location) of recieved array[0]
-			printf("Third point: %d\n", *(_memPosIndexZero + 2));	//Print dereferenced value of the memory position + 2(next next memory location) of recieved array[0]
 		}
 		else if (iResult == 0)										//Checks if the data recieved doesn't contain anything
 			printf("Connection closed\n");
