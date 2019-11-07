@@ -5,8 +5,22 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/.suo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/Browse.VC.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/ipch/AutoPCH/51471a5316c67f4b/REALMIDIPLAYER.ipch" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/ipch/AutoPCH/51471a5316c67f4b/REALMIDIPLAYER.ipch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/Iteration2_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/Iteration2_test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.log" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/RealMidiPlayer.lastbuildstate" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/RealMidiPlayer.lastbuildstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/link.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/Sound.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/Sound.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/minisdl_audio.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/minisdl_audio.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/server_done.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/server_done.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/vc142.idb" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/vc142.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/vc142.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/vc142.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.pdb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +85,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Steff\AppData\Local\Continuum\anaconda3\envs\opencv\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\bruger\Anaconda3\envs\opencv\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
