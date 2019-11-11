@@ -53,6 +53,7 @@ while True:  # ................................................................I
         Client.SendInfo(0, int(IP.distance), int(IP.speed_right_hand))  #.......Sends Distance and Speed
         Client.spamFilter = False  # ...........................................Sets spamFilter to false
     if cv2.waitKey(1) & 0xFF == ord("q"):  # ...................................If q is pressed, break. 
+        IP.write_to_sheet()
         break
 
 cap.release()  # ...............................................................Closes video file or capturing device
