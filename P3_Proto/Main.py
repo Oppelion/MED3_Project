@@ -28,26 +28,32 @@ while True:  # ................................................................I
 
     stringPos = int(IP.guitar_string_pos)
     cv2.rectangle(frame, (0, stringPos - 10), (640, stringPos + 10), (150, 150, 150))
-    if IP.distance < ((IP.distance_init * 3) * 1.2):
+    if IP.distance < ((IP.distance_init * 3) * 1.2):  # ........................If the distance is within the maximum
+        # ......................................................................Make the line black
         frame = cv2.line(frame, (IP.pos_left_hand[0], IP.pos_left_hand[1]), (IP.pos_right_hand[0], IP.pos_right_hand[1]), 0, thickness=5)
-    else:
+    else: # ....................................................................Otherwise make the line Red.
         frame = cv2.line(frame, (IP.pos_left_hand[0], IP.pos_left_hand[1]), (IP.pos_right_hand[0], IP.pos_right_hand[1]), (0, 0, 255), thickness=5)
 
-    cv2.imshow('frame', frame)
-    cv2.imshow('frame4', IP.frame)
-    if cv2.waitKey(1) & 0xFF == ord('w'):
-        Client.SockConnect()
+    cv2.imshow('frame', frame)  # ..............................................Shows the Camera Capture
+    cv2.imshow('frame4', IP.frame)  # ..........................................Shows Image Processed image
+    if cv2.waitKey(1) & 0xFF == ord('w'):  # ...................................If the w key is pressed, connect to server
+        Client.SockConnect()  # ................................................Connects to the local host
         Client.clientConnected = True
 
     if (IP.pos_right_hand[1] <= stringPos - 10) or (IP.pos_right_hand[1] >= stringPos + 10):
+        # ......................................................................If hands are within range
+        # ......................................................................Send data
         Client.spamFilter = True
-
+    
+    # ..........................................................................If client is connected and
+    # ..........................................................................Initial distance has been registered
+    # ..........................................................................And hands are within range
     if Client.clientConnected and (IP.distance_init != 0.0) and (IP.pos_right_hand[1] >= stringPos - 10) and (IP.pos_right_hand[1] <= stringPos + 10) and Client.spamFilter:
-        IP.distance = IP.distance / dividend
-        Client.SendInfo(0, int(IP.distance), int(IP.speed_right_hand))
-        Client.spamFilter = False
-    if cv2.waitKey(1) & 0xFF == ord("q"):
+        IP.distance = IP.distance / dividend  #.................................Divides the Distance by 3
+        Client.SendInfo(0, int(IP.distance), int(IP.speed_right_hand))  #.......Sends Distance and Speed
+        Client.spamFilter = False  # ...........................................Sets spamFilter to false
+    if cv2.waitKey(1) & 0xFF == ord("q"):  # ...................................If q is pressed, break. 
         break
 
-cap.release()
-cv2.destroyAllWindows()
+cap.release()  # ...............................................................Closes video file or capturing device
+cv2.destroyAllWindows()  # .....................................................Destroys all windows. 
