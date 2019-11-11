@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import math
+import xlsxwriter
 
 
 class imageProcessor:
@@ -19,6 +20,8 @@ class imageProcessor:
     lower_limit = (100, 70, 150)
     upper_limit = (140, 255, 255)
     detector = 0
+    data = []
+
 
     def create_blob_detector(self):
         params = cv2.SimpleBlobDetector_Params()  # ..........................Create blob detector with parameters.
@@ -87,6 +90,7 @@ class imageProcessor:
         distance_x = self.pos_left_hand[0] - self.pos_right_hand[0]  # .......Subtract X positions.
         self.distance = math.sqrt(
             (distance_x ** 2) + (distance_y ** 2))  # ........................Formula for finding length of a vector.
+        self.data.append(self.distance)
         return self.distance  # ..............................................Return distance between hands.
 
     def speed(self):  # .....................................................Method for calculating speed.
@@ -108,3 +112,14 @@ class imageProcessor:
         if self.speed_right_hand >= 130:  # .................................Checks if speed is over 130
             self.speed_right_hand = 100  # ..................................Sets speed to 100.
         return self.speed_right_hand  # .....................................Return adjusted speed of right hand.
+    
+    def write_to_sheet(self):
+        workbook = xlsxwriter.Workbook('data.xlsx')
+        worksheet = workbook.add_worksheet()
+        row = 0
+        column = 0
+        for item in self.data:
+            worksheet.write(row, column, item)
+            row += 1
+
+        workbook.close()
