@@ -2,9 +2,16 @@
 #define TSF_IMPLEMENTATION
 #include "tsf.h"
 #include <string>
+#include <queue>
+
+using namespace std;
+
+queue <int> soundQueue;
 bool soundLoad = true;
-int notes[13] = { 0, 96, 90, 84, 78, 72, 66, 60, 54, 50, 48, 46, 44 };
+int counterEnd = 2;
+
 // Holds the global instance pointer(copy)
+
 static tsf* soundFont;
 
 
@@ -22,39 +29,32 @@ Start playing a note
  vel: velocity as a float between 0.0 (equal to note off) and 1.0 (full)
  */
 
-void playNote(int section) 
+void playNote()
 {
-	std::cout << "PlayNote" << std::endl;
-	//These three lines below play the three notes that make up the cord for each section             //int i, Notes[7] = { 48, 50, 52, 53, 55, 57, 59 };
-		tsf_note_on(soundFont, 29, notes[section], volumeAssigner());
-		int b = notes[section];
+	//These three lines below play the three notes that make up the cord for each section
+	tsf_note_on(soundFont, 29, playedSounds[1][counterStart], 0.8f);
+	soundQueue.push(playedSounds[2][counterStart] + 1000);
 	
-																													/*for (int i = 0; i <= 127; i++) {
-																														SDL_Delay(1000);
-																														tsf_note_off(soundFont, 29, i);
-																														tsf_note_on(soundFont, 29, 98, 1.0f);
-																														std::cout << "\nThis is note ";
-																														std::cout << i;
-																													}
-																													*/
-																													/* this part of the code is for looping through and getting the entire list of instruments
-																													for (i = 0; i < tsf_get_presetcount(soundFont); i++)
-																													{
-		
-																														printf("Play note %d with preset #%d '%s'\n", Notes[i % 7], i, tsf_get_presetname(soundFont, i));
-																														tsf_note_off(soundFont, i - 1, Notes[(i - 1) % 7]);
-																														tsf_note_on(soundFont, i, Notes[i % 7], 1.0f);
-																														SDL_Delay(1);
-																													}
-																													*/
+	if (counterStart == 1) {
+		soundQueue.pop();
+		soundQueue.push(playedSounds[2][counterStart / 9 + 1000]);
+	}
 }
 
-void endSound(int section)
-{
-	std::cout << "endSound has std" << std::endl;
-	std::cout << tsf_active_voice_count(soundFont) << std::endl;
-	tsf_note_off(soundFont, 29, notes[section]);
+void stopNote() {
+	if (soundQueue.empty() == false) {
+		if (clock() >= soundQueue.front()) {
+			tsf_note_off(soundFont, 29, playedSounds[1][counterEnd]);
+			cout << "CounterEnd: " << counterEnd << "\n";
+			soundQueue.pop();
+			counterEnd++;
+			if (counterEnd >= 19) {
+				counterEnd = 2;
+			}
+		}
+	}
 }
+
 
 int start_Sound() {
 	// Define the desired audio output format we request
@@ -99,7 +99,7 @@ int start_Sound() {
 	SDL_PauseAudio(0);
 	if (soundLoad == true) {
 		tsf_note_on(soundFont, 30, 60, 0.0f);
-			std::cout << "Sound is loaded \n";
+		std::cout << "Sound is loaded \n";
 		soundLoad = false;
 	}
 	return 0;

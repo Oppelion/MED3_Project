@@ -19,6 +19,7 @@ void passData(char* indexZero)
 		recvArray[i] = *(indexZero + i); //Assigning recvArray to the dereferenced pointer position of the recieved data
 		//indexZero is the pointer recieved, thats points to the memory position of index 0 of the array send from python
 		//indexZero + 1 is the next memory position, and since the recieved data is an array, then every index of that array is ordered in memory
+		cout << "Data recieved from the server untreated: " << recvArray[i] << "\n";
 	}
 
 	/*Implement function call that sends data and starts the MIDI player here*/

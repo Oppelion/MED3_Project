@@ -6,10 +6,15 @@
 #include <string>
 #include "minisdl_audio.h"
 #include <fstream>
-int write2File(std::string a, int b);
-void playNote(int section);
+void playNote();
 int noteAssigner();
 int start_Sound();
-void endSound(int section);
 float volumeAssigner();
+void stopNote();
+extern bool getData;
+extern int sector;
+extern int playedSounds[2][20];
+extern int notes[13];
+extern int counterStart;
+extern int recvArray[3];
 #endif
