@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import math
+import xlsxwriter
 
 
 class imageProcessor:
@@ -18,6 +19,27 @@ class imageProcessor:
     speed_right_hand = 0.0
     lower_limit = (100, 70, 150)
     upper_limit = (140, 255, 255)
+    detector = 0
+    data = []
+
+
+    def create_blob_detector(self):
+        params = cv2.SimpleBlobDetector_Params()  # ..........................Create blob detector with parameters.
+
+        params.filterByArea = True  # ........................................Filter blobs by total area.
+        params.minArea = 700  # ..............................................Minimum area of a blob to be detected.
+        params.maxArea = 15000  # ............................................Maximum area of a blob to be detected.
+        params.filterByColor = True  # .......................................Filter blobs by colour.
+        params.blobColor = 255  # ............................................Only detect white spots as blobs.
+        params.filterByCircularity = False  # ................................Do not filter by circularity of blobs.
+        params.filterByConvexity = False  # ..................................Do not filter by convexity of blobs.
+        params.filterByInertia = False  # ....................................Do not filter by inertia of blobs.
+
+        ver = cv2.__version__.split('.')  # ..................................Set version of blob detector created.
+        if int(ver[0]) < 3:
+            self.detector = cv2.SimpleBlobDetector(params)  # ................Create blob detector.
+        else:
+            self.detector = cv2.SimpleBlobDetector_create(params)  # .........Create blob detector.
 
     def set_frame(self, frame):  # ...........................................Setter method for frame attribute.
         self.frame = frame  # ................................................Sets frame attribute to the arg.
@@ -38,24 +60,7 @@ class imageProcessor:
         return mask_closed  # ................................................Return mask with reduced noise.
 
     def detect_blobs(self, image):  # ........................................Method for blob detection.
-        params = cv2.SimpleBlobDetector_Params()  # ..........................Create blob detector with parameters.
-
-        params.filterByArea = True  # ........................................Filter blobs by total area.
-        params.minArea = 700  # ..............................................Minimum area of a blob to be detected.
-        params.maxArea = 15000  # ............................................Maximum area of a blob to be detected.
-        params.filterByColor = True  # .......................................Filter blobs by colour.
-        params.blobColor = 255  # ............................................Only detect white spots as blobs.
-        params.filterByCircularity = False  # ................................Do not filter by circularity of blobs.
-        params.filterByConvexity = False  # ..................................Do not filter by convexity of blobs.
-        params.filterByInertia = False  # ....................................Do not filter by inertia of blobs.
-
-        ver = cv2.__version__.split('.')  # ..................................Set version of blob detector created.
-        if int(ver[0]) < 3:
-            detector = cv2.SimpleBlobDetector(params)  # .....................Create blob detector.
-        else:
-            detector = cv2.SimpleBlobDetector_create(params)  # ..............Create blob detector.
-
-        blobs = detector.detect(image)  # ....................................Function call to detect blobs in image arg
+        blobs = self.detector.detect(image)  # ...............................Function call to detect blobs in image arg
         return blobs  # ......................................................Return detected blobs.
 
     def locate_hands(self, image):  # ........................................Method to detect location of users' hands.
@@ -84,7 +89,8 @@ class imageProcessor:
             distance_y = self.pos_right_hand[1] - self.pos_left_hand[1]  # ...Subtract Y positions.
         distance_x = self.pos_left_hand[0] - self.pos_right_hand[0]  # .......Subtract X positions.
         self.distance = math.sqrt(
-            (distance_x ** 2) + (distance_y ** 2))  # ......Formula for finding length of a vector.
+            (distance_x ** 2) + (distance_y ** 2))  # ........................Formula for finding length of a vector.
+        self.data.append(self.distance)
         return self.distance  # ..............................................Return distance between hands.
 
     def speed(self):  # .....................................................Method for calculating speed.
@@ -99,10 +105,21 @@ class imageProcessor:
                 self.speed_right_hand = distance_speed  # ...................Sets speed.
                 self.origin_point = self.pos_right_hand[1]  # ...............Sets origin as right hand pos for next time
 
-        if self.speed_right_hand <= 10:  # ...................................checks if value of speed is less than 8.
+        if self.speed_right_hand <= 10:  # ..................................checks if value of speed is less than 8.
             self.speed_right_hand = 0  # ....................................Sets speed to 0.
         if 8 < self.speed_right_hand < 130:  # ..............................Checks if speed is within range.
             self.speed_right_hand = (self.speed_right_hand / 130) * 100  # ..Adjusts speed value to between 0 - 100.
         if self.speed_right_hand >= 130:  # .................................Checks if speed is over 130
             self.speed_right_hand = 100  # ..................................Sets speed to 100.
         return self.speed_right_hand  # .....................................Return adjusted speed of right hand.
+    
+    def write_to_sheet(self):
+        workbook = xlsxwriter.Workbook('data.xlsx')
+        worksheet = workbook.add_worksheet()
+        row = 0
+        column = 0
+        for item in self.data:
+            worksheet.write(row, column, item)
+            row += 1
+
+        workbook.close()

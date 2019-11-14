@@ -1,9 +1,9 @@
 #include "Sound.h";
 #define TSF_IMPLEMENTATION
 #include "tsf.h"
-#include <String>
+#include <string>
 bool soundLoad = true;
-int notes[13] = { 0, 96, 90, 84, 78, 72, 66, 60, 54, 48, 42, 36, 30 };
+int notes[13] = { 0, 96, 90, 84, 78, 72, 66, 60, 54, 50, 48, 46, 44 };
 // Holds the global instance pointer(copy)
 static tsf* soundFont;
 
@@ -27,6 +27,7 @@ void playNote(int section)
 	std::cout << "PlayNote" << std::endl;
 	//These three lines below play the three notes that make up the cord for each section             //int i, Notes[7] = { 48, 50, 52, 53, 55, 57, 59 };
 		tsf_note_on(soundFont, 29, notes[section], volumeAssigner());
+		int b = notes[section];
 	
 																													/*for (int i = 0; i <= 127; i++) {
 																														SDL_Delay(1000);

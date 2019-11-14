@@ -1,4 +1,11 @@
-﻿  RealMidiPlayer.cpp
-C:\Users\Steff\Documents\GitHub\MED3_Project\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(51,52): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\Steff\Documents\GitHub\MED3_Project\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(64,20): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  RealMidiPlayer.vcxproj -> C:\Users\Steff\Documents\GitHub\MED3_Project\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe
+﻿  minisdl_audio.c
+  RealMidiPlayer.cpp
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(65,52): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(78,40): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
+  Sound.cpp
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(79,20): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+  server_done.cpp
+  Generating Code...
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\Sound.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  LINK : C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe not found or not built by the last incremental link; performing full link
+  RealMidiPlayer.vcxproj -> C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe
