@@ -32,19 +32,14 @@ Start playing a note
 void playNote()
 {
 	//These three lines below play the three notes that make up the cord for each section
-	tsf_note_on(soundFont, 29, playedSounds[1][counterStart], 0.8f);
-	soundQueue.push(playedSounds[2][counterStart] + 1000);
-	
-	if (counterStart == 1) {
-		soundQueue.pop();
-		soundQueue.push(playedSounds[2][counterStart / 9 + 1000]);
-	}
+	tsf_note_on(soundFont, 29, playedSounds[0][counterStart], volumeAssigner());
+	soundQueue.push(playedSounds[1][counterStart] + 1000);
 }
 
 void stopNote() {
 	if (soundQueue.empty() == false) {
 		if (clock() >= soundQueue.front()) {
-			tsf_note_off(soundFont, 29, playedSounds[1][counterEnd]);
+			tsf_note_off(soundFont, 29, playedSounds[0][counterEnd]);
 			cout << "CounterEnd: " << counterEnd << "\n";
 			soundQueue.pop();
 			counterEnd++;

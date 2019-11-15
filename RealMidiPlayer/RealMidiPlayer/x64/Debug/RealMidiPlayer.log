@@ -1,4 +1,4 @@
 ﻿  RealMidiPlayer.cpp
-C:\Users\louis\OneDrive\Skrivebord\MED3_Project-master\MED3_Project-master\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(23,40): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\louis\OneDrive\Skrivebord\MED3_Project-master\MED3_Project-master\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(24,20): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-  RealMidiPlayer.vcxproj -> C:\Users\louis\OneDrive\Skrivebord\MED3_Project-master\MED3_Project-master\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(23,40): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(24,20): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+  RealMidiPlayer.vcxproj -> C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe

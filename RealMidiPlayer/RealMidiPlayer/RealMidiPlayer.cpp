@@ -65,10 +65,10 @@ int main()
 				section_Calculator();
 			}
 
-			playedSounds[2][counterStart] = clock();
-			playedSounds[1][counterStart] = notes[noteAssigner()];
-			cout << "This is the value registered in the array: " << playedSounds[1][counterStart] << "\n";
-			volumeAssigner();
+			playedSounds[1][counterStart] = clock();
+			playedSounds[0][counterStart] = notes[noteAssigner()];
+			cout << "This is the value registered in the array: " << playedSounds[0][counterStart] << "\n";
+
 
 			playNote();
 			counterStart++;
