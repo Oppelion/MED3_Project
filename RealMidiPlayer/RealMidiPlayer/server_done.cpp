@@ -2,34 +2,37 @@
 #include <WinSock2.h>	//Network library
 #include <ws2tcpip.h>	//Library used by WinSock2
 #include "server_done.h"
-//#include <stdio.h>	//Unused
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//     _   _  U _____ u   ____    U _____ u      __  __      _       ____               ____       _   _      _       ____     ____   U _____ u _   _    ____	  //
+//    |'| |'| \| ___"|/U |  _"\ u \| ___"|/    U|' \/ '|uU  /"\  uU /"___|u   ___    U /"___|     |'| |'| U  /"\  u U|  _"\ uU|  _"\ u\| ___"|/| \ |"|  / __"| u  //
+//   /| |_| |\ |  _|"   \| |_) |/  |  _|"      \| |\/| |/ \/ _ \/ \| |  _ /  |_"_|   \| | u      /| |_| |\ \/ _ \/  \| |_) |/\| |_) |/ |  _|" <|  \| |><\___ \/   //
+//   U|  _  |u | |___    |  _ <    | |___       | |  | |  / ___ \  | |_| |    | |     | |/__     U|  _  |u / ___ \   |  __/   |  __/   | |___ U| |\  |u u___) |   //
+//    |_| |_|  |_____|   |_| \_\   |_____|      |_|  |_| /_/   \_\  \____|  U/| |\u    \____|     |_| |_| /_/   \_\  |_|      |_|      |_____| |_| \_|  |____/>>  //
+//   //   \\  <<   >>   //   \\_  <<   >>     <<,-,,-.   \\    >>  _)(|_.-,_|___|_,-._// \\      //   \\  \\    >>  ||>>_    ||>>_    <<   >> ||   \\,-.)(  (__)  //
+//  (_") ("_)(__) (__) (__)  (__)(__) (__)     (./  \.) (__)  (__)(__)__)\_)-' '-(_/(__)(__)    (_") ("_)(__)  (__)(__)__)  (__)__)  (__) (__)(_")  (_/(__)		  //
+//																																								  //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma comment(lib, "Ws2_32.lib") //Compiler directive which leaves a comment in generated object file
 using namespace std;
 
 void passData(char* indexZero)
 {/*MUST HAVE 3 INDEXES*/
-	
 	for (int i = 0; i < 3; i++)
 	{
-		/*if (*(indexZero + i < 0)) 
-		{
-
-		}*/
 		recvArray[i] = *(indexZero + i); //Assigning recvArray to the dereferenced pointer position of the recieved data
 		//indexZero is the pointer recieved, thats points to the memory position of index 0 of the array send from python
 		//indexZero + 1 is the next memory position, and since the recieved data is an array, then every index of that array is ordered in memory
 		cout << "Data recieved from the server untreated: " << recvArray[i] << "\n";
 	}
-
-	/*Implement function call that sends data and starts the MIDI player here*/
-	//playSound(recvArray[0], recvArray[1], recvArray[2]);
 	getData = true;
 }
 
 
 
-void recieveData(SOCKET s, char* _memPosIndexZero, int len) {		// Function called recieveData, takes the socket that recieves the data, a pointer array which points to index zero in the recieved data
+void recieveData(SOCKET s, char* _memPosIndexZero, int len) 		// Function called recieveData, takes the socket that recieves the data, a pointer array which points to index zero in the recieved data
+{
 	int iResult;
 	do {
 		iResult = recv(s, _memPosIndexZero, len, 0);				//iResult is the amount of bytes recieved
@@ -90,9 +93,8 @@ int server_main()
 		{
 			cout << "Client connected!" << endl;
 
-			char* _memPosIndexZero = new char[10];	//Wat dis du?
+			char* _memPosIndexZero = new char[10];	//
 			recieveData(client, _memPosIndexZero, 10); //Function call that takes the socket which is to be watched, array for storaging and the length of the pointer array
-
 
 			cout << "End2" << endl;
 			//closesocket(client);
