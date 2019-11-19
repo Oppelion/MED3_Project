@@ -15,7 +15,7 @@ int dividend = 4;														                             //Uses to multiply d
 int counterStart = 2;                                                                                //This integer increments up as you play tunes.
 int recvArray[3];                                                                                    //Place 0 is the max distance, place 1 is current distance, and the velocity (used to store recived data)
 int playedSounds[2][20];												                             //Array used to store the note played and when it is started
-int notes[13] = { 0, 96, 90, 84, 78, 72, 66, 60, 54, 50, 48, 46, 44 };                               //Lowest 0 highest 127 (Notes that can be played based on chosen sector)
+int notes[13] = { 0, 86, 82, 78, 74, 70, 66, 62, 58, 54, 50, 46, 42 };                               //Lowest 0 highest 127 (Notes that can be played based on chosen sector)
 
 float sections[maxSection];                                                                          //This array stores the size of the different sectors for the sorting algorithm
 
@@ -41,7 +41,7 @@ int noteAssigner()                                                              
 		if (recvArray[1] >= sections[i] && recvArray[1] < sections[i + 1])                           //If the received value is within these two points, you have found the sector it belongs to.
 		{
 			int sector = i + 1;											                             //The sector to be played (Sector not allow to be zero, hence the +1)
-
+			cout << "sector: " << sector << endl;
 			return sector;                                                                           //Returns the value to main.
 		}
 	}
@@ -74,8 +74,8 @@ int main()
 			playedSounds[0][counterStart] = notes[noteAssigner()];									//Sets the note being played by the same method as above.
 
 			playNote();                                                                             //Function found in Sound.cpp line 32.
-			counterStart++;																			//Increment counterStarter by 1 :-)
 			dataCollection();
+			counterStart++;																			//Increment counterStarter by 1 :-)
 			++dataCounter;
 			if (counterStart >= 19) {                                                               //Once the counterStart reaches 19, it is reset.
 				counterStart = 2;																	//Resets counterStart to 2, since the array bugs if this equals 1.

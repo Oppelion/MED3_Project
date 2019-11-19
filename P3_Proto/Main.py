@@ -26,7 +26,6 @@ while True:  # ................................................................I
                 data_init_distance = IP.distance_init * dividend
                 DC.data_distance_init.append(data_init_distance)
                 DC.data_converted_distance_init.append(IP.distance_init)
-                counter += 1  # ...............................................Data counter
                 DC.data_counter.append(counter)
         IP.speed_right_hand = IP.speed()  # ...................................Calculate speed of right hand.
 
@@ -54,7 +53,7 @@ while True:  # ................................................................I
     # ..........................................................................If client is connected and
     # ..........................................................................Initial distance has been registered
     # ..........................................................................And hands are within range
-    if Client.clientConnected and (IP.distance_init != 0.0) and (IP.pos_right_hand[1] >= stringPos - 10) and (IP.pos_right_hand[1] <= stringPos + 10) and Client.spamFilter:
+    if Client.clientConnected and (IP.distance_init != 0.0) and (IP.pos_right_hand[1] >= stringPos - 10) and (IP.pos_right_hand[1] <= stringPos + 10) and Client.spamFilter and IP.speed_right_hand != 0:
         DC.data_hand_distance.append(IP.distance)  # ...................Data save the right hand pos
         IP.distance = IP.distance / dividend  # ................................Divides the Distance by 3
         counter += 1  # ............................................Data counter

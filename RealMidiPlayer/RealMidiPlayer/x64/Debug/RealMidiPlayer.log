@@ -1,6 +1,2 @@
 ﻿  DataCollection.cpp
-  RealMidiPlayer.cpp
-C:\Users\Steff\Documents\GitHub\MED3_Project\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(27,40): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
-  Generating Code...
-C:\Users\Steff\Documents\GitHub\MED3_Project\RealMidiPlayer\RealMidiPlayer\RealMidiPlayer.cpp(28,20): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-  RealMidiPlayer.vcxproj -> C:\Users\Steff\Documents\GitHub\MED3_Project\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe
+  RealMidiPlayer.vcxproj -> C:\Users\bruger\Documents\GitHub\MED3_Projectnew\RealMidiPlayer\x64\Debug\RealMidiPlayer.exe
