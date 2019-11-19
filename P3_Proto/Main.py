@@ -1,7 +1,9 @@
 from Client import*
 from image_Processor import*
-
+from data_Collection import*
+DC = data_Collection()
 dividend = 4
+counter = 0
 IP = imageProcessor()  # ......................................................Instantiate imageProcessor object.
 IP.create_blob_detector()
 Client = client()  # ..........................................................Instantiate client object.
@@ -21,6 +23,11 @@ while True:  # ................................................................I
             if cv2.waitKey(1) & 0xFF == ord('l'):  # ..........................Checks if L is pressed.
                 IP.distance_init = IP.calibrate() / dividend  # ...............Calibrate and adjust value of distance.
                 Client.SendInfo(int(IP.distance_init), 0, 0)  # ...............Send distance_init to the server.
+                data_init_distance = IP.distance_init * dividend
+                DC.data_distance_init.append(data_init_distance)
+                DC.data_converted_distance_init.append(IP.distance_init)
+                counter += 1  # ...............................................Data counter
+                DC.data_counter.append(counter)
         IP.speed_right_hand = IP.speed()  # ...................................Calculate speed of right hand.
 
     IP.frame = cv2.drawKeypoints(IP.mask, IP.frame, np.array([]), (0, 0, 255),
@@ -48,10 +55,16 @@ while True:  # ................................................................I
     # ..........................................................................Initial distance has been registered
     # ..........................................................................And hands are within range
     if Client.clientConnected and (IP.distance_init != 0.0) and (IP.pos_right_hand[1] >= stringPos - 10) and (IP.pos_right_hand[1] <= stringPos + 10) and Client.spamFilter:
+        DC.data_hand_distance.append(IP.distance)  # ...................Data save the right hand pos
         IP.distance = IP.distance / dividend  # ................................Divides the Distance by 3
+        counter += 1  # ............................................Data counter
+        DC.data_counter.append(counter)
+        DC.data_converted_Hand_distance.append(IP.distance)
+        DC.data_Converted_speed.append(IP.speed_right_hand)
         Client.SendInfo(0, int(IP.distance), int(IP.speed_right_hand))  #.......Sends Distance and Speed
         Client.spamFilter = False  # ...........................................Set spamFilter to False
     if cv2.waitKey(1) & 0xFF == ord("q"):  # ...................................If q is pressed, break. 
+        DC.write_to_sheet()
         break
 
 cap.release()  # ...............................................................Closes video file or capturing device

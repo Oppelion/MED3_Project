@@ -27,6 +27,9 @@
     <ClCompile Include="server_done.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DataCollection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tsf.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="server_done.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dataCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

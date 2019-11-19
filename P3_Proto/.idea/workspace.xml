@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5abb0f8-1fda-4076-b1a9-803eb851ea18" name="Default Changelist" comment="Fixed some minor stuff again" />
+    <list default="true" id="b5abb0f8-1fda-4076-b1a9-803eb851ea18" name="Default Changelist" comment="Fixed some minor stuff again">
+      <change afterPath="$PROJECT_DIR$/data_Collection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/Browse.VC.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/ipch/AutoPCH/51471a5316c67f4b/REALMIDIPLAYER.ipch" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/ipch/AutoPCH/51471a5316c67f4b/REALMIDIPLAYER.ipch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/ipch/AutoPCH/bc7346af6daaac19/SERVER_DONE.ipch" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/ipch/AutoPCH/bc7346af6daaac19/SERVER_DONE.ipch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/ipch/AutoPCH/f07bf49e63f68fb8/SOUND.ipch" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/.vs/RealMidiPlayer/v16/ipch/AutoPCH/f07bf49e63f68fb8/SOUND.ipch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/Iteration2_test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/RealMidiPlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/RealMidiPlayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/RealMidiPlayer.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/RealMidiPlayer.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/RealMidiPlayer.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/RealMidiPlayer.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.Build.CppClean.log" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.Build.CppClean.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.log" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/RealMidiPlayer.lastbuildstate" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/RealMidiPlayer.lastbuildstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/link.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/RealMidiPlayer.tlog/link.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/Sound.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/Sound.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/minisdl_audio.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/minisdl_audio.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/realmidiplayer.obj.enc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/server_done.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/server_done.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/sound.obj.enc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/vc142.idb" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/vc142.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/vc142.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/RealMidiPlayer/x64/Debug/vc142.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../RealMidiPlayer/x64/Debug/RealMidiPlayer.pdb" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

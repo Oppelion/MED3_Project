@@ -155,8 +155,10 @@
     <ClCompile Include="RealMidiPlayer.cpp" />
     <ClCompile Include="server_done.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="DataCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dataCollection.h" />
     <ClInclude Include="minisdl_audio.h" />
     <ClInclude Include="server_done.h" />
     <ClInclude Include="Sound.h" />

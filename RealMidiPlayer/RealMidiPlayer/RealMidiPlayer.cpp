@@ -4,6 +4,7 @@
 #include "server_done.h"
 #include <fstream>
 #include "tsf.h"
+#include "dataCollection.h"
 #include <ctime>
 
 using namespace std;
@@ -74,7 +75,8 @@ int main()
 
 			playNote();                                                                             //Function found in Sound.cpp line 32.
 			counterStart++;																			//Increment counterStarter by 1 :-)
-
+			dataCollection();
+			++dataCounter;
 			if (counterStart >= 19) {                                                               //Once the counterStart reaches 19, it is reset.
 				counterStart = 2;																	//Resets counterStart to 2, since the array bugs if this equals 1.
 			}
