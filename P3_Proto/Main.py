@@ -27,19 +27,22 @@ while True:  # ................................................................I
                 DC.data_distance_init.append(data_init_distance)
                 DC.data_converted_distance_init.append(IP.distance_init)
                 DC.data_counter.append(counter)
-        IP.speed_right_hand = IP.speed()  # ...................................Calculate speed of right hand.
+
+    IP.speed_right_hand = IP.speed()  # ...................................Calculate speed of right hand.
 
     IP.frame = cv2.drawKeypoints(IP.mask, IP.frame, np.array([]), (0, 0, 255),
                                  cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)  # Draw key points on the blobs.
 
     stringPos = int(IP.guitar_string_pos)  # ..................................Sets position of Guitar String
-    cv2.rectangle(frame, (0, stringPos - 10), (640, stringPos + 10), (150, 150, 150))
+    cv2.rectangle(frame, (0, stringPos - 10), (640, stringPos + 10), (150, 150, 150), 5)
     if IP.distance < ((IP.distance_init * 4) * 1.2):  # ........................If the distance is within the maximum
         # ......................................................................Make the line black
         frame = cv2.line(frame, (IP.pos_left_hand[0], IP.pos_left_hand[1]), (IP.pos_right_hand[0], IP.pos_right_hand[1]), 0, thickness=5)
     else:  # ...................................................................Otherwise make the line Red.
         frame = cv2.line(frame, (IP.pos_left_hand[0], IP.pos_left_hand[1]), (IP.pos_right_hand[0], IP.pos_right_hand[1]), (0, 0, 255), thickness=5)
 
+    frame = cv2.flip(frame, 1)  # ..............................................Mirror Image
+    IP.frame = cv2.flip(IP.frame, 1)  # ........................................Mirror Image
     cv2.imshow('frame', frame)  # ..............................................Shows the Camera Capture
     cv2.imshow('frame4', IP.frame)  # ..........................................Shows Image Processed image
     if (cv2.waitKey(1) & 0xFF == ord('w')) and (Client.clientConnected == False):  # If w key is pressed, connect to server
@@ -47,13 +50,13 @@ while True:  # ................................................................I
         Client.clientConnected = True
 
     # ..........................................................................If hands are within range
-    if (IP.pos_right_hand[1] <= stringPos - 10) or (IP.pos_right_hand[1] >= stringPos + 10):
+    if (IP.pos_right_hand[1] <= stringPos):
         Client.spamFilter = True  # ............................................Set spamFilter to True.
 
     # ..........................................................................If client is connected and
     # ..........................................................................Initial distance has been registered
     # ..........................................................................And hands are within range
-    if Client.clientConnected and (IP.distance_init != 0.0) and (IP.pos_right_hand[1] >= stringPos - 10) and (IP.pos_right_hand[1] <= stringPos + 10) and Client.spamFilter and IP.speed_right_hand != 0:
+    if Client.clientConnected and (IP.distance_init != 0.0) and (IP.pos_right_hand[1] >= stringPos) and Client.spamFilter and IP.speed_right_hand != 0:
         DC.data_hand_distance.append(IP.distance)  # ...................Data save the right hand pos
         IP.distance = IP.distance / dividend  # ................................Divides the Distance by 3
         counter += 1  # ............................................Data counter
@@ -68,3 +71,4 @@ while True:  # ................................................................I
 
 cap.release()  # ...............................................................Closes video file or capturing device
 cv2.destroyAllWindows()  # .....................................................Destroys all windows. 
+
