@@ -16,8 +16,8 @@ class imageProcessor:
     mask = None
     origin_point = 0.0
     speed_right_hand = 0.0
-    lower_limit = (100, 70, 150)
-    upper_limit = (140, 255, 255)
+    lower_limit = (100, 100, 80)
+    upper_limit = (140, 250, 255)
     detector = 0
 
     def create_blob_detector(self):
