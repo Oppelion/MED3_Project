@@ -42,7 +42,7 @@ while True:  # ................................................................I
 
     cv2.imshow('frame', frame)  # ..............................................Shows the Camera Capture
     cv2.imshow('frame4', IP.frame)  # ..........................................Shows Image Processed image
-    if cv2.waitKey(1) & 0xFF == ord('w'):  # ...................................If w key is pressed, connect to server
+    if (cv2.waitKey(1) & 0xFF == ord('w')) and (Client.clientConnected == False):  # If w key is pressed, connect to server
         Client.SockConnect()  # ................................................Connects to the local host
         Client.clientConnected = True
 
