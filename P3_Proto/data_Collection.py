@@ -1,4 +1,4 @@
-import xlsxwriter
+import xlsxwriter  # .........................................................Library used for printing to documents
 """
     Method call into other python files
     from data_Collection import*
@@ -9,6 +9,7 @@ class data_Collection:
      DC.data_AAA(name of the variable one wants to print)
     """
 # /////// data collection ///////
+    # All these variables are array because these needs to be looped when printing
     data_counter = []
     data_speed = []
     data_Converted_speed = []
@@ -20,10 +21,10 @@ class data_Collection:
     data_converted_distance_init = []
 
     def write_to_sheet(self):
-        workbook = xlsxwriter.Workbook('Python.data.collection.xlsx')
-        worksheet_network = workbook.add_worksheet('Python.data.xlsx')
+        workbook = xlsxwriter.Workbook('Python.data.collection.xlsx')  # ......Defines the name and type of file
+        worksheet_network = workbook.add_worksheet('Python.data.xlsx')  # .....Defines the name and type of sheet in excel
 
-        # /////// network ///////
+        # /////// Overview of what is being printed ///////
         # 0 - A1 counter i++
         # 1 - B1 converted initial distance
         # 2 - C1 initial distance
@@ -32,6 +33,7 @@ class data_Collection:
         # 5 - F1 converted speed
         row = 1
         column = 0
+        # ..............................................................Loops through all arrays to be printed and assign these to individual rows and coloumns
         for item in self.data_counter:
             worksheet_network.write('A1', 'data counter')
             worksheet_network.write(row, column, item)

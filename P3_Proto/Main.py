@@ -1,11 +1,12 @@
 from Client import*
 from image_Processor import*
 from data_Collection import*
-DC = data_Collection()
-dividend = 4
-counter = 0
+
+dividend = 4 # ................................................................Makes data smaller before sending through network
+counter = 0 # .................................................................Data counter
 IP = imageProcessor()  # ......................................................Instantiate imageProcessor object.
-IP.create_blob_detector()
+IP.create_blob_detector() # ...................................................Instantiate BLOB detector object
+DC = data_Collection() # ......................................................Instantiate data collection object
 Client = client()  # ..........................................................Instantiate client object.
 cap = cv2.VideoCapture(0)  # ..................................................Begin video capture.
 
@@ -23,10 +24,10 @@ while True:  # ................................................................I
             if cv2.waitKey(1) & 0xFF == ord('l'):  # ..........................Checks if L is pressed.
                 IP.distance_init = IP.calibrate() / dividend  # ...............Calibrate and adjust value of distance.
                 Client.SendInfo(int(IP.distance_init), 0, 0)  # ...............Send distance_init to the server.
-                data_init_distance = IP.distance_init * dividend
-                DC.data_distance_init.append(data_init_distance)
-                DC.data_converted_distance_init.append(IP.distance_init)
-                DC.data_counter.append(counter)
+                data_init_distance = IP.distance_init * dividend # ............Reverts distance_init for printing in dataCollection
+                DC.data_distance_init.append(data_init_distance) # ............Adds the distance_init to the array in dataCollection
+                DC.data_converted_distance_init.append(IP.distance_init) # ....Adds the converted distance_init to the array in dataCollection
+                DC.data_counter.append(counter) # .............................Adds the counter_init to the array in dataCollection
 
     IP.speed_right_hand = IP.speed()  # ...................................Calculate speed of right hand.
 
@@ -57,16 +58,16 @@ while True:  # ................................................................I
     # ..........................................................................Initial distance has been registered
     # ..........................................................................And hands are within range
     if Client.clientConnected and (IP.distance_init != 0.0) and (IP.pos_right_hand[1] >= stringPos) and Client.spamFilter and IP.speed_right_hand != 0:
-        DC.data_hand_distance.append(IP.distance)  # ...................Data save the right hand pos
+        DC.data_hand_distance.append(IP.distance)  # ...........................Data save the right hand pos
         IP.distance = IP.distance / dividend  # ................................Divides the Distance by 3
-        counter += 1  # ............................................Data counter
-        DC.data_counter.append(counter)
-        DC.data_converted_Hand_distance.append(IP.distance)
-        DC.data_Converted_speed.append(IP.speed_right_hand)
+        counter += 1  # ........................................................Data counter
+        DC.data_counter.append(counter) # ......................................Adds the counter to the array in data collection
+        DC.data_converted_Hand_distance.append(IP.distance) # ..................Adds the hand distance to the array in data collection
+        DC.data_Converted_speed.append(IP.speed_right_hand) # ..................Adds the hand speed to the array in data collection
         Client.SendInfo(0, int(IP.distance), int(IP.speed_right_hand))  #.......Sends Distance and Speed
         Client.spamFilter = False  # ...........................................Set spamFilter to False
     if cv2.waitKey(1) & 0xFF == ord("q"):  # ...................................If q is pressed, break. 
-        DC.write_to_sheet()
+        DC.write_to_sheet() # ..................................................Calls the function in data_Collection line 23
         break
 
 cap.release()  # ...............................................................Closes video file or capturing device
