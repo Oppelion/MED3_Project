@@ -1,11 +1,12 @@
 #include "Sound.h";
-#define TSF_IMPLEMENTATION
+#define TSF_IMPLEMENTATION  // Defines values or macros that are used by the preprocessor to manipulate the program source code before it is compiled.
 #include "tsf.h"
 #include <string>
-#include <queue>
+#include <queue>			// C++ inbuild FIFO linkedlist class
 
 using namespace std;
 
+// Global variables(The scope is defined within this c++ file)
 queue <int> soundQueue;                                                                                    //The queue is implemented to make a first-in-first-out system when shutting off tones.
 bool soundLoad = true;                                                                                     //soundLoad toggles the note that is played when the program is initially started.
 int counterEnd = 2;                                                                                        //Serves the same purpose as counterStart in RealMidiPLayer.cpp
@@ -19,15 +20,14 @@ static void AudioCallback(void* data, Uint8* stream, int len)                   
 {
 	int SampleCount = (len / (2 * sizeof(float))); //2 output channels
 	tsf_render_float(soundFont, (float*)stream, SampleCount, 0);
-}
-
-/*
-Link to the Library: https://github.com/schellingb/TinySoundFont/blame/master/tsf.h
-Start playing a note
-   preset_index: preset index >= 0 and < tsf_get_presetcount()
-   key: note value between 0 and 127 (60 being middle C)
- vel: velocity as a float between 0.0 (equal to note off) and 1.0 (full)
- */
+}				   	   	 	 
+																										   /*
+																													Link to the Library: https://github.com/schellingb/TinySoundFont/blame/master/tsf.h
+																													Start playing a note
+																													preset_index: preset index >= 0 and < tsf_get_presetcount()
+																													key: note value between 0 and 127 (60 being middle C)
+																													vel: velocity as a float between 0.0 (equal to note off) and 1.0 (full)
+																										   */
 
 void playNote()																	                           //Function starts the sound to be played and pushes to the queue.
 {
@@ -46,20 +46,21 @@ void stopNote()																	                           //Function that stops
 			counterEnd++;
 			if (counterEnd >= 19)                                                                          //When counterEnd reaches 19, reset it.
 			{
-				counterEnd = 2;
+				counterEnd = 2;																				// The counter goes from 2 to 19 despite the array where it is being used has 20 indices. This is because index 0, 1 bugs the code
 			}
 		}
 	}
 }
 
-
 int start_Sound() 
 {
+	//The following code initiallizes the sound library (These lines is required by the library to instantiate)
+
 	//Define the desired audio output format we request
 	SDL_AudioSpec OutputAudioSpec;
-	OutputAudioSpec.freq = 44100;                                                                          //Sets the frequency of which the audio needs to be played on.
-	OutputAudioSpec.format = AUDIO_F32;                                                                    //Sets the audio format.
-	OutputAudioSpec.channels = 2;                                                                          //Sets the channel the audio will be played on.
+	OutputAudioSpec.freq = 44100;                                                                          
+	OutputAudioSpec.format = AUDIO_F32;                                                                    
+	OutputAudioSpec.channels = 2;                                                                          
 	OutputAudioSpec.samples = 4096;
 	OutputAudioSpec.callback = AudioCallback;
 

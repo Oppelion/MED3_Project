@@ -3,25 +3,27 @@
 #include <iostream>
 #include <istream>
 #include <fstream>
-#include <iomanip>
+#include <iomanip>											//The header <iomanip> is part of the Input/output library of the C++ Standard Library. It defines the manipulator functions resetiosflags(), setiosflags(), setbase(), setfill(), setprecision(), and setw(). These functions may be conveniently used by C++ programs to affect the state of iostream objects.
+
 #include "dataCollection.h"
 
 using namespace std;
 long int dataCounter = 0; // The counter is íterating in main
 bool dataName = true;
-int maxDistance;
 
 int dataCollection() // function is called in main after get data
 {
-	////////// Test varibles ////////// 
+	///////////// variables for printing ///////////// 
+	/* uses same data conversion as rest of program */
 	int counter = dataCounter;//.................counter for the received data 
-	float initialDistance = (float)recvArray[0] *4;
+	float initialDistance = (float)recvArray[0] * 4;
 	float maxDistanceDC = (float)recvArray[0] * 4 * 1.2f;
 	int handDistance = recvArray[1];		// Local variable in noteAssigner - The reason I did this was due to I  not sure whether or not recvArray would be updated by RealMIDI or if the data was directly from server
 	int velocity = recvArray[2];			// velocity. Interval: 0 - 100
 	float distFloat = volumeAssigner();		// float conversion of velocity. Interval: 0,0 - 0
-	int note = playedSounds[0][counterStart];
+	int note = 0;
 
+	//This switch converts the value of the array into the section which it represents
 	switch (playedSounds[0][counterStart])
 	{
 		case 0:
@@ -70,11 +72,14 @@ int dataCollection() // function is called in main after get data
 
 	ofstream myFile; //.......................................................file pointer
 	string filename = "c++ data collection.csv"; //...........................file name
-	myFile.open(filename, ios::out | ios::app | ios::binary); //.................................................opens the file for input - iso::out if removed the "," needs to be changes to ";"
-	if (dataName == true) {
+	myFile.open(filename, ios::out | ios::app | ios::binary); //.................................................opens the file for input
+	if (dataName == true) // Makes sure that the header name for each column is printed before the data is printed
+	{
+		// If computer OS is in Danish ";" is required ... If computer OS is in English "," is required ... otherwise the output becomes broken
 		myFile << "counter" << ";" << "initialDistance" << ";" << "maxDistance" << ";" << "handDistance" << ";" << "velocity" << ";" << "distfloat velocity" << ";" << "note played" << endl;
 		dataName = false;
 	}
+	// If computer OS is in Danish ";" is required ... If computer OS is in English "," is required ... otherwise the output becomes broken
 	myFile << counter << ";" << initialDistance << ";" << maxDistanceDC << ";" << handDistance << ";" << velocity << ";" << distFloat << ";" << note << endl;
 	myFile.close();//.........................................................closes the file
 	return 0;

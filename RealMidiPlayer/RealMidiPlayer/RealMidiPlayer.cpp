@@ -1,14 +1,15 @@
-#include <iostream>
-#include <string>
-#include "Sound.h"
-#include "server_done.h"
-#include <fstream>
-#include "tsf.h"
-#include "dataCollection.h"
-#include <ctime>
+#include <iostream>				// Header that defines the standard input/output stream objects:
+#include <string>				// Needed for c++ to use strings
+#include "Sound.h"				// includes the header file for the sound c++ file
+#include "server_done.h"		// Header file for the server
+#include <fstream>				// Class that performs input/output operations on the files they are associated with
+#include "tsf.h"				// Header file for tinySoundFont library
+#include "dataCollection.h"		// Header file for datacollection
+#include <ctime>				// Class for functions used to manipulate date and time information
 
-using namespace std;
+using namespace std;			// Shortcut
 
+// Global variables
 const int maxSection = 13;												                             //The number of sectors that the program can choose from, representing the neck intervals of one string(1-2 and 2-3)
 
 int dividend = 4;														                             //Uses to multiply data recived, because the recived data is divided in the Python part of the program (Called dividend because of naming in Python part)
@@ -21,6 +22,7 @@ float sections[maxSection];                                                     
 
 bool getData = false;													                             //Race condition for when to play sounds
 
+// Functions
 void section_Calculator()												                             //section_Calculator is run once when the program has received the first set of data from the server. It calculates each of the sections, where a different note will be played.
 {                                             
 	unsigned int maxDistance;											                             //The maximum allowed distance between BLOBs (Distance can't be below zero)
@@ -74,9 +76,9 @@ int main()
 			playedSounds[0][counterStart] = notes[noteAssigner()];									//Sets the note being played by the same method as above.
 
 			playNote();                                                                             //Function found in Sound.cpp line 32.
-			dataCollection();
-			counterStart++;																			//Increment counterStarter by 1 :-)
-			++dataCounter;
+			dataCollection();																		//Function found in DataCollection.cpp line 14
+			counterStart++;																			//Increment counterStarter by 1 :-) (Used for time management)
+			++dataCounter;																			//Increment dataCounter by 1 :-) (Used for datacollection management)
 			if (counterStart >= 19) {                                                               //Once the counterStart reaches 19, it is reset.
 				counterStart = 2;																	//Resets counterStart to 2, since the array bugs if this equals 1.
 			}
