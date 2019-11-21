@@ -9,6 +9,9 @@ IP.create_blob_detector() # ...................................................I
 DC = data_Collection() # ......................................................Instantiate data collection object
 Client = client()  # ..........................................................Instantiate client object.
 cap = cv2.VideoCapture(0)  # ..................................................Begin video capture.
+outMain = cv2.VideoWriter('outPutMain.avi', 0, 24.0, (640,480))
+outBlob = cv2.VideoWriter('outPutBlob.avi', 0, 24.0, (640,480))
+Record = False
 
 while True:  # ................................................................Infinite loop to run the program.
     ret, frame = cap.read()  # ................................................Read from the camera capture.
@@ -46,6 +49,12 @@ while True:  # ................................................................I
     IP.frame = cv2.flip(IP.frame, 1)  # ........................................Mirror Image
     cv2.imshow('frame', frame)  # ..............................................Shows the Camera Capture
     cv2.imshow('frame4', IP.frame)  # ..........................................Shows Image Processed image
+    if (cv2.waitKey(1) & 0xFF == ord('r')):
+        print("Recording")
+        Record = True
+    if Record:
+        outMain.write(frame)
+        outBlob.write(IP.frame)
     if (cv2.waitKey(1) & 0xFF == ord('w')) and (Client.clientConnected == False):  # If w key is pressed, connect to server
         Client.SockConnect()  # ................................................Connects to the local host
         Client.clientConnected = True
@@ -70,6 +79,8 @@ while True:  # ................................................................I
         DC.write_to_sheet() # ..................................................Calls the function in data_Collection line 23
         break
 
+outMain.release()
+outBlob.release()
 cap.release()  # ...............................................................Closes video file or capturing device
 cv2.destroyAllWindows()  # .....................................................Destroys all windows. 
 
