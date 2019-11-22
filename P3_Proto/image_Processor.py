@@ -16,8 +16,8 @@ class imageProcessor:
     mask = None
     origin_point = 0.0
     speed_right_hand = 0.0
-    lower_limit = (100, 100, 80) # ...........................................Lower threshold limit for the color thresholding
-    upper_limit = (140, 250, 255) # ..........................................Upper threshold limit for the color thresholding
+    lower_limit = (20, 50, 50) # ............................................Lower threshold limit for the color thresholding (Old numbers (100, 100, 80))
+    upper_limit = (35, 250, 255) # ..........................................Upper threshold limit for the color thresholding (Old numbers (140, 250, 255))
     detector = 0
 
     def create_blob_detector(self):

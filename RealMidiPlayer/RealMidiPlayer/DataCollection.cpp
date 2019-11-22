@@ -76,11 +76,11 @@ int dataCollection() // function is called in main after get data
 	if (dataName == true) // Makes sure that the header name for each column is printed before the data is printed
 	{
 		// If computer OS is in Danish ";" is required ... If computer OS is in English "," is required ... otherwise the output becomes broken
-		myFile << "counter" << ";" << "initialDistance" << ";" << "maxDistance" << ";" << "handDistance" << ";" << "velocity" << ";" << "distfloat velocity" << ";" << "note played" << endl;
+		myFile << "counter" << ";" << "initialDistance" << ";" << "maxDistance" << ";" << "handDistance" << ";" << "velocity" << ";" << "distfloat velocity" << ";" << "note played" << ";" << "clock" << endl;
 		dataName = false;
 	}
 	// If computer OS is in Danish ";" is required ... If computer OS is in English "," is required ... otherwise the output becomes broken
-	myFile << counter << ";" << initialDistance << ";" << maxDistanceDC << ";" << handDistance << ";" << velocity << ";" << distFloat << ";" << note << endl;
+	myFile << counter << ";" << initialDistance << ";" << maxDistanceDC << ";" << handDistance << ";" << velocity << ";" << distFloat << ";" << note << ";" << (clock() / 100) << endl;
 	myFile.close();//.........................................................closes the file
 	return 0;
 }
